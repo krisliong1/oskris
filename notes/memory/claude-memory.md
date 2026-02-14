@@ -15,7 +15,7 @@
 4. 所有文件必须存储在 /Users/oskris/Downloads/Claude 路径,不要使用/mnt/目录
 5. 永远不要创建新分支,只推送到main分支。使用/tmp克隆oskris仓库进行操作
 6. 新skill必须按分类放入对应目录,文件名为SKILL.md。查看skills/README.md了解分类结构
-7. 每次更新记忆后,必须立即推送记忆到GitHub的notes/memory/目录。任何涉及GitHub的操作都要自动更新记忆
+7. 每次更新记忆后,必须立即推送到GitHub krisliong1/oskris/notes/memory/claude-memory.md。任何涉及GitHub的操作都要自动更新记忆
 
 ## 记忆同步说明
 - 此文件会在每次记忆更新后自动推送到GitHub

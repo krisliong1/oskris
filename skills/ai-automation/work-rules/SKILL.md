@@ -298,7 +298,7 @@ Token 统计：
 
 ### **仓库信息**
 - 仓库地址：https://github.com/krisliong1/oskris
-- GitHub Token：存储在对话历史中(使用 conversation_search 搜索)
+- GitHub Token：存储在 Claude 永久记忆中,不要上传到 GitHub
 - 用户名：krisliong1
 
 ### **Skills 目录结构**
@@ -398,9 +398,9 @@ cp [源文件] skills/[分类]/[skill-name]/SKILL.md
 git add skills/[分类]/[skill-name]/ skills/README.md
 git commit -m "Add [skill-name] to [分类] category"
 
-# 6. 推送（使用对话历史中的 token）
-# 先用 conversation_search 搜索 "GitHub token" 获取真实 token
-git remote set-url origin https://[从对话历史获取的token]@github.com/krisliong1/oskris.git
+# 6. 推送（token 在永久记忆中）
+# Claude 会自动从永久记忆获取 token,不需要在代码中写出
+git remote set-url origin https://[token]@github.com/krisliong1/oskris.git
 git push origin main
 ```
 

@@ -39,8 +39,8 @@
 - **mcp-builder** - MCP 服务器构建
 - **skill-creator** - Skill 创建和测试
 
-### 🧠 [ai-automation/](ai-automation/) - AI 自动化
-智能自动化和信息管理
+### 🤖 [agents/](agents/) - AI Agents
+智能代理和自动化工作流
 - **smart-info-manager** - 自动记录和分类所有对话到 GitHub
 - **auto-translate** - 自动识别英文并用中文回复,代码保持英文
 - **app-recommendations** - 精准App推荐,默认精简模式节省token

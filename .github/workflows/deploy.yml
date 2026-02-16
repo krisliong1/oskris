@@ -1,0 +1,74 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Deploy to VPS
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        VPS_HOST: ${{ secrets.VPS_HOST }}
+        VPS_USER: ${{ secrets.VPS_USER }}
+      run: |
+        echo "开始部署到 VPS..."
+        
+        # 配置 SSH
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $VPS_HOST >> ~/.ssh/known_hosts 2>/dev/null
+        
+        # 在 VPS 上执行部署
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_HOST << 'ENDSSH'
+          echo "========================================="
+          echo "开始部署 oskris 仓库"
+          echo "========================================="
+          
+          # 备份目录
+          BACKUP_DIR="/root/oskris-backup"
+          DEPLOY_DIR="$BACKUP_DIR/$(date +%Y%m%d)"
+          
+          # 检查目录是否存在
+          if [ -d "$DEPLOY_DIR/oskris" ]; then
+            echo "✓ 目录已存在,执行 git pull..."
+            cd $DEPLOY_DIR/oskris
+            git pull origin main
+            echo "✓ 代码已更新"
+          else
+            echo "✗ 目录不存在,首次克隆..."
+            mkdir -p $DEPLOY_DIR
+            cd $DEPLOY_DIR
+            git clone https://github.com/krisliong1/oskris.git
+            echo "✓ 仓库克隆完成"
+          fi
+          
+          # 显示最新提交信息
+          cd $DEPLOY_DIR/oskris
+          echo ""
+          echo "最新提交:"
+          git log -1 --oneline
+          
+          # 统计文件数量
+          echo ""
+          echo "统计信息:"
+          echo "Skills 文件数: $(find . -name 'SKILL.md' | wc -l)"
+          echo "总文件数: $(find . -type f | wc -l)"
+          
+          echo ""
+          echo "========================================="
+          echo "✅ 部署完成!"
+          echo "部署路径: $DEPLOY_DIR/oskris"
+          echo "========================================="
+ENDSSH
+        
+        echo ""
+        echo "✅ GitHub Actions 部署成功完成!"

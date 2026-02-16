@@ -1,10 +1,10 @@
 # Claude 记忆系统
 
-最后更新: 2026-02-16
+最后更新: 2026-02-16 (v2 精简合并版)
 
 ## 核心配置
 1. GitHub: krisliong1/oskris, 只推main分支, /tmp克隆操作
-2. VPS: 76.13.191.45, Ubuntu 25.10, 2核8GB, Malaysia
+2. VPS: 76.13.191.45, 密码Qwer-1234Aa, Ubuntu 25.10, 2核8GB, Malaysia
 3. Hostinger API已配置(token存Claude记忆)
 4. 域名: oskris.com(到期2027)
 5. 用户邮箱: oskrismy@gmail.com / official@oskris.com
@@ -24,12 +24,25 @@
 15. 敏感信息禁止存GitHub, 只存VPS+记忆
 16. 记忆更新后同步此文件: notes/memory/claude-memory.md
 
+## Context Window 监控(核心!)
+17. 研究证实: 20-40%就开始降级, 不是100%
+18. 降级是悬崖式非线性的, 不可预测
+19. Claude必须每10轮主动报告估计用量%
+20. 阈值: 30%警告, 40%强烈建议开新对话, 50%必须停止
+21. 来源: Chroma Research(18个LLM测试), Stanford Lost in the Middle
+
 ## Skills分类
-17. core/ - 核心系统(work-rules, core-work-rules, secrets-manager等)
-18. web-development/ - 网站开发(project-workflow, frontend-builder等)
-19. content/ - 翻译(auto-translate, smart-info-manager)
-20. product/ - 产品(product-self-knowledge, app-recommendations)
+22. core/ - 核心系统(work-rules, core-work-rules等)
+23. web-development/ - 网站开发(project-workflow等)
+24. content/ - 翻译(auto-translate, smart-info-manager)
+25. product/ - 产品(product-self-knowledge, app-recommendations)
 
 ## 当前项目
-21. websitedesign.oskris.com - 网站设计服务
-22. 定价: RM 1,999 / 4,999 / 9,999
+26. websitedesign.oskris.com - 网站设计服务
+27. 定价: RM 1,999 / 4,999 / 9,999
+
+## 文件路径
+28. /home/claude - 临时工作
+29. /mnt/user-data/outputs - 输出给用户
+30. /mnt/skills/user/ - 读取Skills
+31. /tmp - 临时目录(克隆GitHub用)

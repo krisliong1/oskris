@@ -1,28 +1,35 @@
 # Claude 记忆系统
 
-最后更新: 2025-02-14
+最后更新: 2026-02-16
 
-## GitHub 配置
-1. GitHub username: krisliong1
-2. GitHub repository: krisliong1/oskris
-3. GitHub token已配置(不在此处显示,存储在Claude记忆中)
-4. 记忆同步路径: notes/memory/claude-memory.md
-5. 工作目录: /Users/oskris/Downloads/Claude
-6. 临时操作目录: /tmp/oskris (克隆仓库用)
+## 核心配置
+1. GitHub: krisliong1/oskris, 只推main分支, /tmp克隆操作
+2. VPS: 76.13.191.45, Ubuntu 25.10, 2核8GB, Malaysia
+3. Hostinger API已配置(token存Claude记忆)
+4. 域名: oskris.com(到期2027)
+5. 用户邮箱: oskrismy@gmail.com / official@oskris.com
 
-## 工作流程规则
-3. 每次上传GitHub后必须告诉用户:新建文件名和更新文件名,格式简洁
-4. 所有文件必须存储在 /Users/oskris/Downloads/Claude 路径,不要使用/mnt/目录
-5. 永远不要创建新分支,只推送到main分支。使用/tmp克隆oskris仓库进行操作
-6. 新skill必须按分类放入对应目录,文件名为SKILL.md。查看skills/README.md了解分类结构
-7. 每次更新记忆后,必须立即推送到GitHub krisliong1/oskris/notes/memory/claude-memory.md。任何涉及GitHub的操作都要自动更新记忆
+## 工作规则
+6. 所有价格用RM(马来西亚令吉)
+7. 用户零代码基础, Claude负责学习+执行
+8. 质量等级: 初级→中级→高级→专业级, 要求专业级
+9. 先验证再执行, 不用占位符
+10. 代码/命令保持英文, 其他用华文回复
+11. 提供命令不加#注释, 只给纯代码
+12. 文件已存在用str_replace, 不要盲目创建
 
-## 记忆同步说明
-- 此文件会在每次记忆更新后自动推送到GitHub
-- GitHub路径: krisliong1/oskris/notes/memory/claude-memory.md
-- 本地操作路径: /tmp/oskris
-- 确保所有对话框都能获取最新的工作规则
-- 更新流程: 
-  1. 在 /tmp 克隆 oskris 仓库
-  2. 更新 notes/memory/claude-memory.md
-  3. 推送到 krisliong1/oskris main分支
+## 自动存储
+13. Claude修改文件后自动: 上传GitHub + Hostinger API同步VPS
+14. 每步告诉用户新建/更新了什么
+15. 敏感信息禁止存GitHub, 只存VPS+记忆
+16. 记忆更新后同步此文件: notes/memory/claude-memory.md
+
+## Skills分类
+17. core/ - 核心系统(work-rules, core-work-rules, secrets-manager等)
+18. web-development/ - 网站开发(project-workflow, frontend-builder等)
+19. content/ - 翻译(auto-translate, smart-info-manager)
+20. product/ - 产品(product-self-knowledge, app-recommendations)
+
+## 当前项目
+21. websitedesign.oskris.com - 网站设计服务
+22. 定价: RM 1,999 / 4,999 / 9,999

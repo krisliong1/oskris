@@ -1,3 +1,8 @@
+---
+name: learning
+description: 系统化学习新知识的流程。研究、理解、存储、应用四步法。当用户要求学习新领域、分享需要记住的信息、或开始不熟悉的项目时使用。
+---
+
 # Learning Skill
 
 ## Purpose

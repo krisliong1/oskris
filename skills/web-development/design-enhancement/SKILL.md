@@ -1,3 +1,8 @@
+---
+name: design-enhancement
+description: 网站设计感提升指南。专业动画效果(GSAP)、微交互、视觉质量提升、小众高质量设计风格。当需要提升网站视觉质量或添加动画效果时使用。
+---
+
 # Design Enhancement Skill
 ## 专业网站设计感提升指南
 

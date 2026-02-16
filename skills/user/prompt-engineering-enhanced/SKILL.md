@@ -1,3 +1,8 @@
+---
+name: prompt-engineering-enhanced
+description: Prompt工程高级技巧，适用于Claude Code和其他AI系统。结构化提示、Plan Mode最佳实践、复杂需求沟通。当提示质量不佳或需要优化AI交互时使用。
+---
+
 # Prompt Engineering Skill (Claude Code Enhanced)
 
 ## Trigger

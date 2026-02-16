@@ -1,3 +1,8 @@
+---
+name: claude-code-mastery
+description: Claude Code终端工具的高级使用技巧。Plan Mode、context管理、CLAUDE.md配置、MCP集成、headless模式。当在Claude Code环境工作或用户提到Claude Code相关话题时使用。
+---
+
 # Claude Code Mastery Skill
 
 ## Trigger

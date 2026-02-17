@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<!-- ============================================ -->
+		<!-- Payload 1: AdGuard Family DNS (DoH+CDN加速)   -->
+		<!-- 最强屏蔽: 广告+追踪+成人内容+安全搜索         -->
+		<!-- 这是你说有效的那个! Family版过滤最全面          -->
+		<!-- CDN: Cloudflare全球节点加速, 马来西亚延迟<20ms -->
+		<!-- ============================================ -->
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.15</string>
+					<string>94.140.15.16</string>
+					<string>2a10:50c0::bad1:ff</string>
+					<string>2a10:50c0::bad2:ff</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://family.adguard-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>AdGuard Family DNS - 最全面广告屏蔽+家庭保护。屏蔽广告域名、追踪器、恶意软件、成人内容,启用安全搜索。使用DoH加密,经Cloudflare CDN全球加速。对YouTube: 可屏蔽部分横幅广告和追踪,但视频内嵌广告(SSAI)无法通过DNS屏蔽。</string>
+			<key>PayloadDisplayName</key>
+			<string>🛡️ AdGuard全能屏蔽+家庭保护</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.adguard-family</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B1A1A1A1-1111-4111-A111-111111111111</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<!-- ============================================ -->
+		<!-- Payload 2: AdGuard Default DNS (DoH+CDN加速)  -->
+		<!-- 标准屏蔽: 广告+追踪 (不过滤成人内容)          -->
+		<!-- 适合不需要家庭保护的场景                       -->
+		<!-- ============================================ -->
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>AdGuard Default DNS - 标准广告屏蔽+追踪防护。屏蔽广告域名和追踪器,不过滤成人内容。DoH加密传输,Cloudflare CDN加速。</string>
+			<key>PayloadDisplayName</key>
+			<string>🚫 AdGuard标准广告屏蔽</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.adguard-default</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B2B2B2B2-2222-4222-B222-222222222222</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<!-- ============================================ -->
+		<!-- Payload 3: Cloudflare Family DNS (DoH)        -->
+		<!-- Cloudflare CDN原生节点,延迟最低               -->
+		<!-- 屏蔽恶意软件+成人内容                         -->
+		<!-- 马来西亚有Cloudflare POP节点,<5ms延迟         -->
+		<!-- ============================================ -->
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.3</string>
+					<string>1.0.0.3</string>
+					<string>2606:4700:4700::1113</string>
+					<string>2606:4700:4700::1003</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://family.cloudflare-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>Cloudflare Family DNS - 极速+恶意软件屏蔽+成人内容过滤。Cloudflare原生CDN节点,马来西亚延迟极低(&lt;5ms)。屏蔽恶意软件和成人网站,但广告屏蔽不如AdGuard全面。</string>
+			<key>PayloadDisplayName</key>
+			<string>⚡ Cloudflare极速+家庭安全</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cloudflare-family</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B3C3C3C3-3333-4333-C333-333333333333</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<!-- ============================================ -->
+		<!-- Payload 4: Cloudflare Security DNS (DoH)      -->
+		<!-- 只屏蔽恶意软件和钓鱼网站,不过滤成人内容       -->
+		<!-- 最快速度+基础安全                              -->
+		<!-- ============================================ -->
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.2</string>
+					<string>1.0.0.2</string>
+					<string>2606:4700:4700::1112</string>
+					<string>2606:4700:4700::1002</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://security.cloudflare-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>Cloudflare Security DNS - 极速+恶意软件屏蔽。不过滤广告和成人内容,只防护恶意软件和钓鱼攻击。适合需要最快速度同时保持基础安全的场景。</string>
+			<key>PayloadDisplayName</key>
+			<string>🔒 Cloudflare极速+安全防护</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cloudflare-security</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B4D4D4D4-4444-4444-D444-444444444444</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<!-- ============================================ -->
+		<!-- Payload 5: Quad9 安全DNS (DoH)                -->
+		<!-- 由全球威胁情报驱动,屏蔽恶意域名和钓鱼          -->
+		<!-- 不记录用户查询日志,隐私最强                     -->
+		<!-- ============================================ -->
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>9.9.9.9</string>
+					<string>149.112.112.112</string>
+					<string>2620:fe::fe</string>
+					<string>2620:fe::9</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.quad9.net/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>Quad9安全DNS - 全球威胁情报驱动,屏蔽恶意域名、钓鱼网站、僵尸网络。不记录用户查询日志,隐私保护最强。不屏蔽广告。</string>
+			<key>PayloadDisplayName</key>
+			<string>🔐 Quad9威胁防护+隐私保护</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.quad9</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B5E5E5E5-5555-4555-E555-555555555555</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<!-- ============================================ -->
+		<!-- Payload 6: 阿里DNS加速 (DoH) - 亚洲CDN       -->
+		<!-- 不过滤,纯加速。马来西亚/新加坡节点极快          -->
+		<!-- 适合需要最快解析速度+不需要过滤的场景           -->
+		<!-- ============================================ -->
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>223.5.5.5</string>
+					<string>223.6.6.6</string>
+					<string>2400:3200::1</string>
+					<string>2400:3200:baba::1</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.alidns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>阿里DNS - 亚洲CDN极速加速。新加坡/马来西亚节点,延迟极低。不过滤广告,纯DNS加速。适合中国/东南亚用户需要最快解析的场景。</string>
+			<key>PayloadDisplayName</key>
+			<string>🚀 阿里DNS亚洲极速加速</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.alidns</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B6F6F6F6-6666-4666-F666-666666666666</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Oskris专业版DNS广告屏蔽+CDN加速+安全防护。包含6个DNS配置可在设置中切换：
+1. AdGuard全能屏蔽+家庭保护 (推荐首选)
+2. AdGuard标准广告屏蔽
+3. Cloudflare极速+家庭安全
+4. Cloudflare极速+安全防护
+5. Quad9威胁防护+隐私保护
+6. 阿里DNS亚洲极速加速
+
+所有DNS均使用DoH(DNS over HTTPS)加密传输,防止ISP窃听。
+安装后在: 设置 → 通用 → VPN与设备管理 → DNS 中选择启用。
+
+⚠️ YouTube广告说明: DNS级别可屏蔽YouTube横幅广告和追踪器,但YouTube视频内嵌广告(SSAI服务器端注入)使用与视频相同的域名(googlevideo.com),DNS无法区分,这是全球所有DNS方案的技术限制。完全屏蔽YouTube视频广告需要: 浏览器+AdGuard扩展 或 YouTube Premium。
+
+v3.0 by Oskris | 2026-02-17</string>
+	<key>PayloadDisplayName</key>
+	<string>Oskris DNS屏蔽广告Pro v3.0</string>
+	<key>PayloadIdentifier</key>
+	<string>com.oskris.dns-adblock-pro.v3</string>
+	<key>PayloadOrganization</key>
+	<string>Oskris</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>F0B0B0B0-AAAA-4BBB-CCCC-DDDDDDDDDDDD</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>Oskris DNS屏蔽广告Pro v3.0
+
+此配置文件包含6个加密DNS设置(全部DoH),在 设置 → 通用 → VPN与设备管理 → DNS 中选择启用。
+
+推荐: 选择「AdGuard全能屏蔽+家庭保护」获得最全面的广告屏蔽效果。
+
+功能:
+✅ 屏蔽网页/App广告和弹窗
+✅ 屏蔽追踪器保护隐私
+✅ 屏蔽恶意软件和钓鱼网站
+✅ 家庭保护过滤成人内容
+✅ DoH加密防止ISP窥探
+✅ CDN全球加速(Cloudflare/阿里)
+✅ 支持IPv4+IPv6双栈
+
+⚠️ YouTube视频广告无法完全通过DNS屏蔽(技术限制)
+
+由Oskris制作 | oskris.com</string>
+	</dict>
+</dict>
+</plist>

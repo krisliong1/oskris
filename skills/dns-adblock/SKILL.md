@@ -1,6 +1,6 @@
 ---
 name: dns-adblock
-description: DNS广告屏蔽技能。收集各App/平台的广告域名，生成多种格式的屏蔽规则(hosts/AdGuard/Surge/Quantumult X/mobileconfig)。当用户要屏蔽某个App广告、查找广告域名、制作屏蔽规则时触发。
+description: DNS广告屏蔽技能。收集各App/平台的广告域名，生成mobileconfig/hosts/AdGuard/Surge等格式屏蔽规则。当用户要屏蔽广告、制作DNS配置、查找广告域名时触发。包含YouTube SSAI机制研究和CDN加速方案。
 ---
 
 # DNS 广告屏蔽
@@ -9,133 +9,63 @@ description: DNS广告屏蔽技能。收集各App/平台的广告域名，生成
 
 收集、整理App和平台的广告/追踪域名，生成多种格式的屏蔽规则。配合 `ios-mobileconfig` skill 可直接生成 iOS 描述文件。
 
+**核心认知**: DNS级别屏蔽对大多数App广告有效,但对YouTube视频广告(SSAI)无效——因为YouTube将广告注入到与视频相同的域名(googlevideo.com)中。
+
 ## Quick Start
 
-### 查找广告域名的方法
+### DNS屏蔽能力边界
 
-1. **搜索关键词**: `[App名] 广告屏蔽 域名 hosts github`
-2. **抓包分析**: Charles/Stream 抓包，筛选 ad/track/log/stat 相关请求
-3. **社区规则库**: anti-AD、NobyDa、ConnersHua 等开源项目
-4. **APK分析**: 查看App集成了哪些广告SDK，对应查SDK域名
+| 能屏蔽 | 不能屏蔽 |
+|--------|----------|
+| 独立广告域名(第三方SDK) | YouTube视频内嵌广告(SSAI) |
+| 网页横幅/弹窗广告 | 与内容共享域名的广告 |
+| App追踪器和分析 | 加密流内的广告 |
+| 恶意软件/钓鱼域名 | 服务器端拼接的广告流 |
 
-### 中国App常见广告SDK域名
+### YouTube SSAI机制
 
-#### 穿山甲（字节跳动广告）
-```
-ad.toutiao.com
-ad.oceanengine.com
-is.snssdk.com
-pangolin-sdk-toutiao.com
-sf3-fe-tos.pglstatp-toutiao.com
-toblog.ctobsnssdk.com
-```
+YouTube使用Server-Side Ad Insertion(SSAI),广告在服务器端直接拼接进视频流:
+- 广告和视频都通过 `*.googlevideo.com` 传输
+- DNS只能解析域名,无法区分URL路径中的广告参数
+- 屏蔽 googlevideo.com = 视频完全无法播放
+- YouTube视频广告必须用浏览器扩展或YouTube Premium
 
-#### 广点通（腾讯广告）
-```
-mi.gdt.qq.com
-sdk.e.qq.com
-adsmind.gdtimg.com
-pgdt.gtimg.cn
-win.gdt.qq.com
-v.gdt.qq.com
-```
+### 推荐DNS方案
 
-#### 百度广告
-```
-mobads.baidu.com
-mobads-logs.baidu.com
-cpro.baidu.com
-baidumobad.baidu.com
-als.baidu.com
-```
-
-#### 快手广告
-```
-open.e.kuaishou.com
-```
+| 场景 | DNS | 效果 |
+|------|-----|------|
+| 全面屏蔽+家庭保护 | AdGuard Family | 最佳 |
+| 标准广告屏蔽 | AdGuard Default | 好 |
+| 极速+安全 | Cloudflare Family | 速度最快 |
+| 威胁防护+隐私 | Quad9 | 不记录日志 |
+| 亚洲CDN加速 | 阿里DNS | 东南亚最快 |
 
 ## Workflow
 
-### 已收集的App广告域名
+### DNS服务器完整列表
 
-#### 美颜相机 BeautyCam (美图/Meitu)
-```
-ad.meitu.com
-ads.meitu.com
-adui.meitu.com
-api-ad.meitu.com
-sdk.ads.meitu.com
-mdap.meitu.com
-track.meitu.com
-stat.meitu.com
-log.meitu.com
-analytics.meitu.com
-push.meitu.com
-msg.meitu.com
-crash.meitu.com
-```
-配置文件: `projects/beautycam-adblock/`
+AdGuard Family: DoH `https://family.adguard-dns.com/dns-query` | 94.140.14.15/94.140.15.16 | IPv6 2a10:50c0::bad1:ff/2a10:50c0::bad2:ff
+AdGuard Default: DoH `https://dns.adguard-dns.com/dns-query` | 94.140.14.14/94.140.15.15 | IPv6 2a10:50c0::ad1:ff/2a10:50c0::ad2:ff
+Cloudflare Family: DoH `https://family.cloudflare-dns.com/dns-query` | 1.1.1.3/1.0.0.3 | IPv6 2606:4700:4700::1113/2606:4700:4700::1003
+Cloudflare Security: DoH `https://security.cloudflare-dns.com/dns-query` | 1.1.1.2/1.0.0.2
+Quad9: DoH `https://dns.quad9.net/dns-query` | 9.9.9.9/149.112.112.112
+阿里DNS: DoH `https://dns.alidns.com/dns-query` | 223.5.5.5/223.6.6.6
 
-### 规则格式转换
+### 配置文件
 
-同一组域名可以输出为以下格式：
+最新: `projects/beautycam-adblock/configs/oskris-adblock-pro-v3.mobileconfig` (6个DNS,DoH,CDN加速,IPv4+IPv6)
 
-#### hosts 格式（路由器/电脑）
-```
-0.0.0.0 ad.example.com
-```
+### 已收集广告域名
 
-#### AdGuard/Pi-hole 格式
-```
-||ad.example.com^
-```
-
-#### Surge/Shadowrocket 格式
-```
-DOMAIN-SUFFIX,ad.example.com,REJECT
-```
-
-#### Quantumult X 格式
-```
-host-suffix, ad.example.com, reject
-```
-
-#### Clash 格式
-```yaml
-- DOMAIN-SUFFIX,ad.example.com,REJECT
-```
-
-### 带广告过滤的公共DNS服务器
-
-| 服务 | DoH地址 | IP | 说明 |
-|------|---------|-----|------|
-| AdGuard DNS | `https://dns.adguard-dns.com/dns-query` | 94.140.14.14, 94.140.15.15 | 屏蔽广告+追踪 |
-| AdGuard Family | `https://family.adguard-dns.com/dns-query` | 94.140.14.15, 94.140.15.16 | +成人内容 |
-| Cloudflare Security | `https://security.cloudflare-dns.com/dns-query` | 1.1.1.2, 1.0.0.2 | 屏蔽恶意软件 |
-| Quad9 | `https://dns.quad9.net/dns-query` | 9.9.9.9, 149.112.112.112 | 屏蔽恶意域名 |
-
-### 不过滤的加速DNS（配合自建AdGuard Home用）
-
-| 服务 | DoH地址 | IP | 适合 |
-|------|---------|-----|------|
-| 阿里DNS | `https://dns.alidns.com/dns-query` | 223.5.5.5, 223.6.6.6 | 中国/东南亚 |
-| DNSPod | `https://doh.pub/dns-query` | 119.29.29.29 | 中国 |
-| Cloudflare | `https://cloudflare-dns.com/dns-query` | 1.1.1.1, 1.0.0.1 | 全球 |
-| Google | `https://dns.google/dns-query` | 8.8.8.8, 8.8.4.4 | 全球 |
-
-### 社区广告规则订阅源
-
-| 项目 | 链接 | 说明 |
-|------|------|------|
-| anti-AD | `https://anti-ad.net/surge2.txt` | 中文区最强 |
-| NobyDa | `github.com/NobyDa/Script` | Surge/QX脚本 |
-| ConnersHua | `github.com/GoodHolidays/ConnersHua` | 多平台规则 |
-| AdGuard DNS filter | 内置于AdGuard DNS | 全球广告 |
+美颜相机: ad.meitu.com, ads.meitu.com, track.meitu.com, stat.meitu.com等
+穿山甲: ad.toutiao.com, ad.oceanengine.com
+广点通: mi.gdt.qq.com, sdk.e.qq.com
+百度: mobads.baidu.com, cpro.baidu.com
 
 ## Guidelines
 
-- 每次为新App收集广告域名后，更新本Skill的"已收集App"段落
-- 同时生成 mobileconfig + 至少一种文本格式规则
-- 广告域名分两类：App自有域名 + 第三方广告SDK域名
-- 配置文件存 `projects/[app名]-adblock/`
-- iOS限制：mobileconfig只能指定DNS服务器，不能直接屏蔽单个域名。要精确屏蔽需用AdGuard DNS或自建AdGuard Home
+- AdGuard Family DNS效果最好(过滤规则最全面)
+- mobileconfig必须包含IPv4+IPv6双栈+DoH加密
+- YouTube视频广告无法DNS屏蔽,需告知用户
+- CDN加速考虑地理位置:马来西亚优先Cloudflare和阿里DNS
+- 配置文件存 `projects/[app名]-adblock/configs/`

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>AdGuard DNS - 屏蔽广告+追踪器+恶意网站。过滤规则最全面，不限制任何正常网站。DoH加密。</string>
+			<key>PayloadDisplayName</key>
+			<string>🛡️ AdGuard广告屏蔽(推荐)</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.adguard-default</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B1A1A1A1-1111-4111-A111-111111111111</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.2</string>
+					<string>1.0.0.2</string>
+					<string>2606:4700:4700::1112</string>
+					<string>2606:4700:4700::1002</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://security.cloudflare-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>Cloudflare Security - 极速DNS+恶意软件/钓鱼防护。马来西亚延迟极低。不屏蔽广告。</string>
+			<key>PayloadDisplayName</key>
+			<string>⚡ Cloudflare极速+安全</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cloudflare-security</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B2B2B2B2-2222-4222-B222-222222222222</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>9.9.9.9</string>
+					<string>149.112.112.112</string>
+					<string>2620:fe::fe</string>
+					<string>2620:fe::9</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.quad9.net/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>Quad9 - 威胁情报驱动，屏蔽恶意域名和钓鱼。不记录用户日志，隐私最强。</string>
+			<key>PayloadDisplayName</key>
+			<string>🔐 Quad9威胁防护+隐私</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.quad9</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B3C3C3C3-3333-4333-C333-333333333333</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.1</string>
+					<string>1.0.0.1</string>
+					<string>2606:4700:4700::1111</string>
+					<string>2606:4700:4700::1001</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://cloudflare-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>Cloudflare 1.1.1.1 - 全球最快DNS，纯DoH加密，不过滤任何内容。</string>
+			<key>PayloadDisplayName</key>
+			<string>🚀 Cloudflare 1.1.1.1 纯速度</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cloudflare-pure</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B4D4D4D4-4444-4444-D444-444444444444</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>223.5.5.5</string>
+					<string>223.6.6.6</string>
+					<string>2400:3200::1</string>
+					<string>2400:3200:baba::1</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.alidns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>阿里DNS - 亚洲CDN极速，新加坡/马来西亚节点。不过滤内容，中国网站解析最快。</string>
+			<key>PayloadDisplayName</key>
+			<string>🇨🇳 阿里DNS亚洲加速</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.alidns</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B5E5E5E5-5555-4555-E555-555555555555</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Oskris DNS广告屏蔽+加速 Pro v3.1
+5个DNS可切换，不限制任何正常网站访问。
+安装后: 设置→通用→VPN与设备管理→DNS 选择启用。
+v3.1 by Oskris | 2026-02-17</string>
+	<key>PayloadDisplayName</key>
+	<string>Oskris DNS屏蔽广告Pro v3.1</string>
+	<key>PayloadIdentifier</key>
+	<string>com.oskris.dns-adblock-pro.v3</string>
+	<key>PayloadOrganization</key>
+	<string>Oskris</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>F0B0B0B0-AAAA-4BBB-CCCC-DDDDDDDDDDDD</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>Oskris DNS广告屏蔽Pro v3.1
+
+5个加密DNS，设置→通用→VPN与设备管理→DNS 选择。
+推荐: AdGuard广告屏蔽。
+不限制任何正常网站访问。
+
+由Oskris制作 | oskris.com</string>
+	</dict>
+</dict>
+</plist>

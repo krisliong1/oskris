@@ -1,260 +1,126 @@
 ---
 name: learning
-description: 系统化学习新知识的流程。研究、理解、存储、应用四步法。当用户要求学习新领域、分享需要记住的信息、或开始不熟悉的项目时使用。
+description: >-
+  持续进化引擎：学习新领域→验证→创建skill/agent→存储→优化，完整闭环。
+  当用户说"学习/研究/了解/搞清楚X"、进入不熟悉的领域、需要调研后再动手、
+  要消化文章或教程、从零掌握某技术/行业时触发。也适用于用户分享文章要求
+  消化吸收的场景。Claude在回答任何可能涉及时效性的问题前，都应先搜索验证。
+  学习后自动创建skill存GitHub并更新记忆，确保知识不丢失。发现skill不能用
+  必须立刻告诉用户并给替代方案。
 ---
 
-# Learning Skill
+# Learning Skill — 持续进化引擎
 
-## Purpose
-This skill enables Claude to systematically learn new knowledge, store it properly, and apply it in future conversations.
+不只是"学习"，而是：学习→验证→应用→创建skill/agent→存储→搜索优化→再学习。
 
-## Trigger
-Use this skill when:
-- User asks "learn about X"
-- User shares new information that should be remembered
-- Starting work in an unfamiliar domain
-- Before creating any new project or skill
+## ⚠️ 第一条规则：你的知识经常是错的
 
-## Learning Process (4 Steps)
+你有"自信偏差"——觉得自己知道的东西是对的，但30%以上已经过时。
+这不是理论，是从实际对话中反复验证的事实。
 
-### Step 1: Research & Understand
-```
-BEFORE doing anything:
-1. Search web for current best practices
-2. Find 2026 industry standards
-3. Identify professional workflows
-4. Check pricing/market information (for business topics)
-5. Review existing skills to avoid duplication
-```
+具体案例见 references/past-mistakes.md（没有就创建）。
 
-**Sources Priority**:
-1. Official documentation
-2. Industry leaders' blogs
-3. Recent tutorials (2025-2026)
-4. GitHub trending projects
-5. Professional communities
+**规则：**
+- 学任何东西前，先承认"我可能不知道最新情况"
+- 用 web search 搜索验证（所有plan都有web search，包括Free plan）
+- 搜索结果和训练数据冲突时，以搜索结果为准
+- 关于Claude自己的功能也必须搜索，不要凭记忆回答
 
-### Step 2: Document Learning
-Create a Learning Report in this format:
+**为什么：**
+你曾假设"Free plan没有web search"设计了错误方案。
+你曾用旧版本号给用户写代码。
+你曾错误判断平台功能给出错误建议。
+每次错误都浪费用户的时间和信任。
 
-```markdown
-# [Topic] Learning Report
-**Date**: YYYY-MM-DD
-**Goal**: [What level to achieve]
+## 环境自动适配
 
-## Current Understanding
-[What I knew before]
+检测当前可用能力，自动调整行为：
+- web search → 所有plan都有，必须使用
+- file creation → 有就生成文件，没有就在对话中提供完整内容
+- computer use / bash → 有就自动存储GitHub+VPS，没有就告诉用户手动保存
+- 不确定用户有什么能力 → 搜索确认，不要猜
 
-## New Knowledge
-### 1. [Key Topic 1]
-[Detailed notes]
+## 学习工作流（5步）
 
-### 2. [Key Topic 2]
-[Detailed notes]
+### 第1步：承认不知道
+不说"据我所知"然后输出旧数据。说"让我先搜索最新信息"。即使很确定也搜索验证。
 
-## Professional Standards
-[Industry best practices]
+### 第2步：搜索验证
+搜3+权威来源，详见 references/search-strategy.md。
+- 英文权威源优先，再补中文/马来西亚本地源
+- 对比多个来源交叉验证
+- 关注2025-2026的变化
+- 马来西亚市场相关必须搜本地定价和法规
+- **搜索后必须记录结果**，不能搜完就忘
 
-## Tools & Technology
-[Current tech stack]
+### 第3步：消化提炼
+- 区分"已知通用知识"和"真正新信息"
+- 提炼关键知识点，不是复制粘贴
+- 按 references/learning-report-template.md 格式产出报告
+- 质量达到"专业级"，见 references/quality-standards.md
 
-## Pricing/Market Info
-[If applicable - Malaysian market]
+### 第4步：立刻应用
+- 学了就干活，不是写报告就完事
+- 值得创建新skill就创建（先搜索有没有类似方案，有就调用优化，没有才从零创建）
+- 技术类先验证可行性（跑通再记录）
+- 不给用户"学习建议"——你学完了直接帮用户做
+- 创建的skill必须真正能用、能触发、能产出结果
+- 如果发现skill不能用，立刻告诉用户并给替代方案
 
-## Action Plan
-[What to create/do next]
+### 第5步：存储闭环
+学完后立即执行：
+a) 学习报告 → GitHub: learning-reports/[topic]-learning.md
+b) 新skill（如有）→ GitHub: skills/[category]/[name]/SKILL.md
+c) 学习过程记录 → GitHub: learning-logs/[date]-[topic].md（标记学到什么知识）
+d) 搜索结果记录 → 存入学习报告或对应skill，不能丢弃
+e) 关键结论 → 更新记忆
+f) 失败案例 → 更新 references/past-mistakes.md（先检查是否存在，不存在就创建）
+g) 告诉用户：新建了什么文件、更新了什么文件
 
-## Summary
-[Key takeaways]
-```
+## 什么值得存储和记忆
 
-### Step 3: Create/Update Skills
-**After learning, ALWAYS**:
-1. Create new Skill if needed
-2. Update existing Skills with new knowledge
-3. Store in `/mnt/skills/user/[skill-name]/SKILL.md`
+✅ 可复用的结论
+✅ 已验证可行的技术方案
+✅ 用户的偏好和决策
+✅ 学习后学到的知识 → 必须变成skill存GitHub
+✅ 实时性信息（搜索确认后的最新数据）
+✅ 创新前搜索到的类似方案（调用→优化，不重复造轮子）
+✅ 学习过程本身 → 专门文件存储并标记学到什么
 
-**Skill Template**:
-```markdown
-# [Skill Name]
+**禁止：**
+❌ 搜索后的信息不做任何存储和记录
+❌ 做了不能用的skill却不验证就交付
+❌ 知道skill不能用也不告诉用户
 
-## Trigger
-When to use this skill
+## 苏格拉底式教学法（教学生时）
 
-## Core Principles
-Key rules and standards
+如果是教学场景（用户的学生使用此skill）：
+- 先了解学生水平和目标
+- 生成3-7阶段学习路线图，标注"你在这里"
+- 用提问引导思考，不直接灌输
+- 自适应难度：答对加速，答错放慢
+- 每阶段有练习验证理解
+- 用学生熟悉的比喻解释抽象概念
+- 学生完成后让他用自己的话复述验证
 
-## Workflow
-Step-by-step process
+## 犯错后自动更新机制
 
-## Examples
-Practical examples
+当用户纠正错误时：
+1. 承认错误，不找借口
+2. 立刻用web search搜索确认正确信息
+3. 检查 references/past-mistakes.md 是否存在
+   - 存在 → 添加新错误记录
+   - 不存在 → 创建文件并添加
+4. 推送到GitHub
+5. 检查是否需要更新skill或记忆
+6. 确保下次遇到类似场景不再犯
 
-## Common Mistakes
-What to avoid
+## 与其他Skill的关系
 
-## Checklist
-Before/during/after work
-```
+- work-rules → 遵循质量标准
+- auto-storage → 存储步骤的具体执行
+- smart-info-manager → 记忆更新的分类方式
+- 新skill创建 → 见 references/skill-creation-guide.md
 
-### Step 4: Store Everything
-**Triple Storage** (ALWAYS execute):
-
-1. **GitHub** (Learning Report)
-   ```bash
-   /tmp/oskris/learning-reports/[TOPIC]_LEARNING.md
-   ```
-
-2. **GitHub** (Skill if created)
-   ```bash
-   /tmp/oskris/skills/user/[skill-name]/SKILL.md
-   ```
-
-3. **Memory Update**
-   ```
-   Add: "Completed [topic] learning on [date], created [skill name]"
-   ```
-
-4. **Present to User**
-   Copy to `/mnt/user-data/outputs/`
-
----
-
-## Quality Standards
-
-### From Intern to Professional
-Learning must achieve "Professional" level, not "Intern" level.
-
-**Professional Learning includes**:
-- ✅ Industry standards (2026)
-- ✅ Complete workflows
-- ✅ Market pricing (if applicable)
-- ✅ Tools & tech stack
-- ✅ Common pitfalls
-- ✅ Quality metrics
-- ✅ Professional vs amateur comparison
-
-**Avoid Intern-level Learning**:
-- ❌ Surface-level understanding
-- ❌ Outdated information
-- ❌ No workflow/process
-- ❌ No pricing awareness
-- ❌ Just copying examples
-
----
-
-## Learning Checklist
-
-Before saying "I've learned X":
-
-- [ ] Researched 3+ authoritative sources
-- [ ] Found 2026 best practices
-- [ ] Created Learning Report
-- [ ] Created/Updated relevant Skill
-- [ ] Stored in GitHub (learning-reports/)
-- [ ] Stored in GitHub (skills/user/)
-- [ ] Updated memory
-- [ ] Presented files to user
-- [ ] Can explain it professionally
-- [ ] Can apply it immediately
-
----
-
-## Continuous Learning
-
-### When to Learn More
-- New project type encountered
-- User asks about unfamiliar topic
-- Technology/tool is outdated
-- Market conditions changed
-- Professional standards evolved
-
-### Update Cycle
-- **Skills**: Update when learning new information
-- **Learning Reports**: New report for each learning session
-- **Memory**: Add key facts, keep concise
-
----
-
-## Examples
-
-### Example 1: Learning Web Design
-```
-1. Research: 
-   - 2026 web design trends
-   - Professional workflows
-   - Malaysian pricing
-   
-2. Document:
-   - Create PROFESSIONAL_WEB_DESIGN_LEARNING.md
-   - 7-stage workflow
-   - Pricing RM 1,500-25,000+
-   
-3. Create Skills:
-   - professional-web-design
-   - requirements-analyst
-   - design-consultant
-   - frontend-builder
-   
-4. Store & Update:
-   - GitHub learning-reports/
-   - GitHub skills/user/
-   - Memory: "Completed web design learning"
-```
-
-### Example 2: Learning New Framework
-```
-1. Research:
-   - Official docs
-   - Best practices 2026
-   - Performance benchmarks
-   
-2. Document:
-   - [FRAMEWORK]_LEARNING.md
-   - Setup guide
-   - Common patterns
-   
-3. Create Skill:
-   - [framework]-development
-   
-4. Store:
-   - All locations
-   - Update memory
-```
-
----
-
-## Critical Rules
-
-1. **NEVER claim to know something without learning first**
-   - If unfamiliar, SAY SO and start learning process
-   
-2. **ALWAYS research before creating**
-   - Don't rely on training data alone
-   - Get current 2026 information
-   
-3. **STORE everything learned**
-   - Learning Report
-   - Skills
-   - Memory
-   - User outputs
-   
-4. **APPLY learning immediately**
-   - Test understanding
-   - Use in next project
-   - Reference in work
-
----
-
-## Integration with Other Skills
-
-This Learning Skill works with:
-- **work-rules**: Follow quality standards
-- **auto-storage**: Automatic triple storage
-- **smart-info-manager**: Organize learned info
-- **All project skills**: Apply learning to real work
-
----
-
-**Last Updated**: 2026-02-16
-**Status**: Active - use for all learning tasks
+**最后更新**: 2026-02-17
+**定位**: 持续进化引擎，不只是学习工具

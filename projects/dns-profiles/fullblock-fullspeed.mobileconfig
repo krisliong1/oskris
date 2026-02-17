@@ -5,20 +5,21 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>此描述文件由 oskris.com 制作。
+		<string>oskris.com 制作
 
-功能：
-• AdGuard DNS 广告屏蔽（屏蔽广告、追踪器、恶意网站）
-• Cloudflare 安全DNS加速（备用）
+🛡️ 屏蔽功能：
+• AdGuard DNS - 广告+追踪器屏蔽
+• Cloudflare Security - 恶意网站屏蔽+CDN加速
+• Quad9 - 威胁+钓鱼+僵尸网络屏蔽
 
-⚠️ YouTube视频广告需配合AdGuard App使用
+⚡ 加速功能：
+• Cloudflare 1.1.1.1 全球CDN
+• 阿里DNS 亚洲加速
 
-安装后在 设置→通用→VPN与设备管理→DNS 中选择使用。</string>
+✅ 不屏蔽成人网站（Grindr/Tinder/Blued正常使用）
+
+安装后在 设置→通用→VPN与设备管理→DNS 中选择。</string>
 	</dict>
-	<key>DuplicateDetectionIdentifier</key>
-	<false/>
-	<key>HasRemovalPasscode</key>
-	<false/>
 	<key>PayloadContent</key>
 	<array>
 		<dict>
@@ -37,17 +38,17 @@
 				<string>https://dns.adguard-dns.com/dns-query</string>
 			</dict>
 			<key>PayloadDescription</key>
-			<string>AdGuard DNS - 屏蔽广告+追踪器+恶意网站+钓鱼网站</string>
+			<string>屏蔽广告+追踪器+恶意网站（不屏蔽成人网站）</string>
 			<key>PayloadDisplayName</key>
-			<string>🛡️ AdGuard 广告屏蔽 DNS</string>
+			<string>🛡️ AdGuard 广告屏蔽</string>
 			<key>PayloadIdentifier</key>
-			<string>com.oskris.dns.adguard-block.63ECFCD4-D91D-4E26-A2C7-7A4B1F3FF6FB</string>
+			<string>com.oskris.dns.adguard.EFAF6987-8794-4C52-8705-23372A54A90B</string>
 			<key>PayloadOrganization</key>
 			<string>oskris.com</string>
 			<key>PayloadType</key>
 			<string>com.apple.dnsSettings.managed</string>
 			<key>PayloadUUID</key>
-			<string>63ECFCD4-D91D-4E26-A2C7-7A4B1F3FF6FB</string>
+			<string>EFAF6987-8794-4C52-8705-23372A54A90B</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 		</dict>
@@ -67,25 +68,115 @@
 				<string>https://security.cloudflare-dns.com/dns-query</string>
 			</dict>
 			<key>PayloadDescription</key>
-			<string>Cloudflare 1.1.1.2 安全DNS - 屏蔽恶意网站+快速解析</string>
+			<string>屏蔽恶意网站+钓鱼+CDN加速（不屏蔽成人网站）</string>
 			<key>PayloadDisplayName</key>
-			<string>⚡ Cloudflare 安全+快速 DNS</string>
+			<string>⚡ Cloudflare 安全防护</string>
 			<key>PayloadIdentifier</key>
-			<string>com.oskris.dns.cloudflare-security.D44AD95B-2C70-4AC8-B31A-F17F7BBC1B55</string>
+			<string>com.oskris.dns.cf-security.B93B04F2-C5D8-4E56-BF03-B5FDAE48611E</string>
 			<key>PayloadOrganization</key>
 			<string>oskris.com</string>
 			<key>PayloadType</key>
 			<string>com.apple.dnsSettings.managed</string>
 			<key>PayloadUUID</key>
-			<string>D44AD95B-2C70-4AC8-B31A-F17F7BBC1B55</string>
+			<string>B93B04F2-C5D8-4E56-BF03-B5FDAE48611E</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>9.9.9.9</string>
+					<string>149.112.112.112</string>
+					<string>2620:fe::fe</string>
+					<string>2620:fe::9</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.quad9.net/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>屏蔽恶意软件+钓鱼+僵尸网络（不屏蔽成人网站）</string>
+			<key>PayloadDisplayName</key>
+			<string>🔒 Quad9 威胁防护</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.quad9.23419C6A-4A07-4C22-B739-187234095550</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>23419C6A-4A07-4C22-B739-187234095550</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.1</string>
+					<string>1.0.0.1</string>
+					<string>2606:4700:4700::1111</string>
+					<string>2606:4700:4700::1001</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://cloudflare-dns.com/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>全球最快DNS + CDN加速（无过滤）</string>
+			<key>PayloadDisplayName</key>
+			<string>🚀 Cloudflare 极速</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cf-speed.9F6A8D4B-C3AE-4577-9B4D-FE17D8F5DD36</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>9F6A8D4B-C3AE-4577-9B4D-FE17D8F5DD36</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>223.5.5.5</string>
+					<string>223.6.6.6</string>
+					<string>2400:3200::1</string>
+					<string>2400:3200:baba::1</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.alidns.com/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>亚洲区域极速解析</string>
+			<key>PayloadDisplayName</key>
+			<string>🇨🇳 阿里DNS 亚洲加速</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.alidns.7B7817FB-96C2-4F24-9067-F9B12E73F9A1</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>7B7817FB-96C2-4F24-9067-F9B12E73F9A1</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
-	<string>oskris.com 制作 | AdGuard广告屏蔽 + Cloudflare安全加速 | 屏蔽广告/追踪/恶意网站 + CDN加速</string>
+	<string>oskris.com | AdGuard广告屏蔽 + Cloudflare安全+CDN + Quad9威胁防护 + 阿里DNS加速 | 不屏蔽成人网站</string>
 	<key>PayloadDisplayName</key>
-	<string>🔰 全屏蔽+全加速 DNS</string>
+	<string>🛡️全屏蔽+⚡️全加速</string>
 	<key>PayloadIdentifier</key>
 	<string>com.oskris.fullblock-fullspeed</string>
 	<key>PayloadOrganization</key>
@@ -95,7 +186,7 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>A69FB3A0-8058-4BA6-9156-95EA7340E254</string>
+	<string>9590A7DC-90F0-4B4A-8AA8-DCBB04A1A7C4</string>
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 </dict>

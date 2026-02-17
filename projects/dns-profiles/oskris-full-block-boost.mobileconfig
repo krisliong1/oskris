@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<!-- Payload 1: AdGuard DNS 广告屏蔽 (主DNS) -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.adguard-block</string>
+			<key>PayloadUUID</key>
+			<string>A1B2C3D4-1111-1111-1111-000000000001</string>
+			<key>PayloadDisplayName</key>
+			<string>🛡️ AdGuard 广告屏蔽</string>
+			<key>PayloadDescription</key>
+			<string>AdGuard DNS - 屏蔽广告、跟踪器、恶意网站。覆盖全局App和浏览器广告。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
+				</array>
+			</dict>
+		</dict>
+		<!-- Payload 2: Cloudflare 恶意软件屏蔽 (备用DNS) -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cloudflare-security</string>
+			<key>PayloadUUID</key>
+			<string>A1B2C3D4-1111-1111-1111-000000000002</string>
+			<key>PayloadDisplayName</key>
+			<string>🔒 Cloudflare 安全防护</string>
+			<key>PayloadDescription</key>
+			<string>Cloudflare 1.1.1.2 - 屏蔽恶意软件和钓鱼网站，CDN全球加速。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://security.cloudflare-dns.com/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.2</string>
+					<string>1.0.0.2</string>
+					<string>2606:4700:4700::1112</string>
+					<string>2606:4700:4700::1002</string>
+				</array>
+			</dict>
+		</dict>
+		<!-- Payload 3: Quad9 威胁防护 -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.quad9-threat</string>
+			<key>PayloadUUID</key>
+			<string>A1B2C3D4-1111-1111-1111-000000000003</string>
+			<key>PayloadDisplayName</key>
+			<string>🔐 Quad9 威胁防护</string>
+			<key>PayloadDescription</key>
+			<string>Quad9 - 屏蔽已知恶意域名、勒索软件、僵尸网络。瑞士隐私保护。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://dns.quad9.net/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>9.9.9.9</string>
+					<string>149.112.112.112</string>
+					<string>2620:fe::fe</string>
+					<string>2620:fe::9</string>
+				</array>
+			</dict>
+		</dict>
+		<!-- Payload 4: 阿里DNS亚洲加速 -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.alidns-boost</string>
+			<key>PayloadUUID</key>
+			<string>A1B2C3D4-1111-1111-1111-000000000004</string>
+			<key>PayloadDisplayName</key>
+			<string>🇨🇳 阿里DNS亚洲加速</string>
+			<key>PayloadDescription</key>
+			<string>阿里公共DNS - 亚洲节点极速解析，中国/东南亚网站加速首选。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://dns.alidns.com/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>223.5.5.5</string>
+					<string>223.6.6.6</string>
+					<string>2400:3200::1</string>
+					<string>2400:3200:baba::1</string>
+				</array>
+			</dict>
+		</dict>
+		<!-- Payload 5: Cloudflare 1.1.1.1 纯速度CDN加速 -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cloudflare-speed</string>
+			<key>PayloadUUID</key>
+			<string>A1B2C3D4-1111-1111-1111-000000000005</string>
+			<key>PayloadDisplayName</key>
+			<string>🚀 Cloudflare 1.1.1.1 极速CDN</string>
+			<key>PayloadDescription</key>
+			<string>Cloudflare 1.1.1.1 - 全球最快公共DNS，200+数据中心CDN加速。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://cloudflare-dns.com/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.1</string>
+					<string>1.0.0.1</string>
+					<string>2606:4700:4700::1111</string>
+					<string>2606:4700:4700::1001</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDisplayName</key>
+	<string>🛡️⚡ 全屏蔽+全加速 by oskris.com</string>
+	<key>PayloadDescription</key>
+	<string>5合1 DNS描述文件：AdGuard广告屏蔽 + Cloudflare安全防护 + Quad9威胁拦截 + 阿里DNS亚洲加速 + Cloudflare CDN极速。安装后在 设置→通用→VPN与设备管理→DNS 中切换。YouTube广告屏蔽建议配合App Store下载 Vinegar($1.99) 或 AdGuard iOS(免费) 的Safari扩展使用，可达99%屏蔽率。</string>
+	<key>PayloadIdentifier</key>
+	<string>com.oskris.dns.full-block-boost</string>
+	<key>PayloadOrganization</key>
+	<string>oskris.com</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>A1B2C3D4-0000-0000-0000-000000000001</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>此描述文件由 oskris.com 提供，包含5个DNS配置选项。安装后可在设置中自由切换，不会收集任何个人数据。YouTube广告深度屏蔽：请配合从App Store下载 Vinegar 或 AdGuard iOS Safari扩展使用。</string>
+	</dict>
+	<key>DurationUntilRemoval</key>
+	<real>0</real>
+</dict>
+</plist>

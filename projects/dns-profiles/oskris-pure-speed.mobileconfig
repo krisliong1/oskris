@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<!-- Payload 1: Cloudflare 1.1.1.1 全球CDN极速 -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.speed.cloudflare</string>
+			<key>PayloadUUID</key>
+			<string>B1B2C3D4-2222-2222-2222-000000000001</string>
+			<key>PayloadDisplayName</key>
+			<string>🚀 Cloudflare 1.1.1.1 全球极速</string>
+			<key>PayloadDescription</key>
+			<string>全球最快公共DNS，200+数据中心，平均延迟11ms。欧美网站/YouTube/Netflix加速首选。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://cloudflare-dns.com/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.1</string>
+					<string>1.0.0.1</string>
+					<string>2606:4700:4700::1111</string>
+					<string>2606:4700:4700::1001</string>
+				</array>
+			</dict>
+		</dict>
+		<!-- Payload 2: 阿里DNS亚洲加速 -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.speed.alidns</string>
+			<key>PayloadUUID</key>
+			<string>B1B2C3D4-2222-2222-2222-000000000002</string>
+			<key>PayloadDisplayName</key>
+			<string>🇨🇳 阿里DNS 亚洲极速</string>
+			<key>PayloadDescription</key>
+			<string>阿里公共DNS - 亚洲最大DNS节点网络，中国/马来西亚/新加坡网站加速首选。DoH加密。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://dns.alidns.com/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>223.5.5.5</string>
+					<string>223.6.6.6</string>
+					<string>2400:3200::1</string>
+					<string>2400:3200:baba::1</string>
+				</array>
+			</dict>
+		</dict>
+		<!-- Payload 3: Google DNS 全球备用 -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.speed.google</string>
+			<key>PayloadUUID</key>
+			<string>B1B2C3D4-2222-2222-2222-000000000003</string>
+			<key>PayloadDisplayName</key>
+			<string>🌐 Google DNS 全球通用</string>
+			<key>PayloadDescription</key>
+			<string>Google 8.8.8.8 - 全球覆盖最广的DNS，稳定可靠，任何地区都能快速解析。</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerURL</key>
+				<string>https://dns.google/dns-query</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>8.8.8.8</string>
+					<string>8.8.4.4</string>
+					<string>2001:4860:4860::8888</string>
+					<string>2001:4860:4860::8844</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDisplayName</key>
+	<string>⚡ 全加速 CDN+DNS by oskris.com</string>
+	<key>PayloadDescription</key>
+	<string>3合1 纯速度DNS描述文件：Cloudflare全球CDN极速 + 阿里DNS亚洲加速 + Google DNS全球通用。无任何屏蔽功能，专注网络加速。安装后在 设置→通用→VPN与设备管理→DNS 中切换。马来西亚/新加坡推荐阿里DNS，访问欧美网站推荐Cloudflare。</string>
+	<key>PayloadIdentifier</key>
+	<string>com.oskris.dns.pure-speed</string>
+	<key>PayloadOrganization</key>
+	<string>oskris.com</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>B1B2C3D4-0000-0000-0000-000000000002</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>此描述文件由 oskris.com 提供，包含3个纯速度DNS配置。无广告屏蔽，专注网络加速。不会收集任何个人数据。</string>
+	</dict>
+</dict>
+</plist>

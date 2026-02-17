@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>EvaluateConnection</string>
+					<key>ActionParameters</key>
+					<array>
+						<dict>
+							<key>DomainAction</key>
+							<string>NeverConnect</string>
+							<key>Domains</key>
+							<array>
+								<string>ad.meitu.com</string>
+								<string>ads.meitu.com</string>
+								<string>adui.meitu.com</string>
+								<string>api-ad.meitu.com</string>
+								<string>sdk.ads.meitu.com</string>
+								<string>mdap.meitu.com</string>
+								<string>track.meitu.com</string>
+								<string>stat.meitu.com</string>
+								<string>log.meitu.com</string>
+								<string>analytics.meitu.com</string>
+								<string>push.meitu.com</string>
+								<string>msg.meitu.com</string>
+								<string>crash.meitu.com</string>
+								<string>ad.toutiao.com</string>
+								<string>ad.oceanengine.com</string>
+								<string>is.snssdk.com</string>
+								<string>mi.gdt.qq.com</string>
+								<string>sdk.e.qq.com</string>
+								<string>mobads.baidu.com</string>
+								<string>mobads-logs.baidu.com</string>
+								<string>open.e.kuaishou.com</string>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>AdGuard DNS (DoH) 广告屏蔽 - 屏蔽美颜相机及常见中国App广告</string>
+			<key>PayloadDisplayName</key>
+			<string>美颜相机广告屏蔽 DNS</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.beautycam.adblock.dns1</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>A1B2C3D4-E5F6-7890-ABCD-EF1234567890</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>使用 AdGuard DNS (DNS over HTTPS) 屏蔽美颜相机 BeautyCam 13.0.20 及其他中国App的广告、追踪和弹窗。由 Oskris 制作。</string>
+	<key>PayloadDisplayName</key>
+	<string>美颜相机广告屏蔽【AdGuard DNS】</string>
+	<key>PayloadIdentifier</key>
+	<string>com.oskris.beautycam.adblock</string>
+	<key>PayloadOrganization</key>
+	<string>Oskris</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>F1E2D3C4-B5A6-9807-6543-210FEDCBA098</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>此配置文件将使用 AdGuard DNS (DNS over HTTPS) 作为您设备的 DNS 解析器，自动屏蔽广告、追踪器和恶意网站。特别针对美颜相机 BeautyCam 的广告域名进行了优化屏蔽。安装后可在 设置 > 通用 > VPN、DNS与设备管理 > DNS 中查看和管理。</string>
+		<key>zh</key>
+		<string>此配置文件将使用 AdGuard DNS (DNS over HTTPS) 作为您设备的 DNS 解析器，自动屏蔽广告、追踪器和恶意网站。特别针对美颜相机 BeautyCam 的广告域名进行了优化屏蔽。安装后可在 设置 > 通用 > VPN、DNS与设备管理 > DNS 中查看和管理。</string>
+	</dict>
+</dict>
+</plist>

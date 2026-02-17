@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>223.5.5.5</string>
+					<string>223.6.6.6</string>
+					<string>2400:3200::1</string>
+					<string>2400:3200:baba::1</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.alidns.com/dns-query</string>
+			</dict>
+			<key>OnDemandRules</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<string>Connect</string>
+				</dict>
+			</array>
+			<key>PayloadDescription</key>
+			<string>阿里公共DNS (DoH) - 加速DNS解析，配合路由器/AdGuard Home屏蔽广告</string>
+			<key>PayloadDisplayName</key>
+			<string>阿里DNS加速</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.beautycam.alidns.dns1</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>B2C3D4E5-F6A7-8901-BCDE-F23456789012</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>使用阿里公共DNS (DNS over HTTPS) 加速DNS解析。需配合路由器端 hosts 或 AdGuard Home 屏蔽美颜相机广告域名。适合中国大陆及马来西亚用户。由 Oskris 制作。</string>
+	<key>PayloadDisplayName</key>
+	<string>阿里DNS加速【中国优化】</string>
+	<key>PayloadIdentifier</key>
+	<string>com.oskris.beautycam.alidns</string>
+	<key>PayloadOrganization</key>
+	<string>Oskris</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>C3D4E5F6-A7B8-9012-CDEF-345678901234</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>此配置文件使用阿里公共DNS (DoH) 加速DNS解析并加密DNS流量。适合中国大陆及东南亚用户使用。</string>
+	</dict>
+</dict>
+</plist>

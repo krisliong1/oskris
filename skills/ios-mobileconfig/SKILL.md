@@ -1,17 +1,17 @@
 ---
 name: ios-mobileconfig
-description: 制作iOS配置描述文件(.mobileconfig),包括DNS设置、广告屏蔽、企业证书屏蔽等。当用户需要制作iOS描述文件、DNS配置、广告屏蔽配置时触发此skill。
+description: 制作iOS/iPadOS/macOS配置描述文件(.mobileconfig)。支持DNS设置、VPN配置、Wi-Fi、证书、企业证书屏蔽等所有payload类型。当用户需要制作任何iOS描述文件时触发。
 ---
 
-# iOS Mobileconfig 配置文件制作
+# iOS Mobileconfig 配置描述文件制作
 
 ## Overview
 
-制作 `.mobileconfig` 描述文件用于 iOS/iPadOS/macOS 设备的系统级配置。主要用途：DNS广告屏蔽、企业证书验证屏蔽、加密DNS配置。
+制作 `.mobileconfig` 配置描述文件，用于 iOS/iPadOS/macOS 设备系统级配置。一个文件可包含多个 payload，实现DNS、VPN、Wi-Fi、证书等多种功能组合。
 
 ## Quick Start
 
-### 基本结构
+### 外层结构（所有描述文件通用）
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -20,21 +20,45 @@ description: 制作iOS配置描述文件(.mobileconfig),包括DNS设置、广告
 <dict>
     <key>PayloadContent</key>
     <array>
-        <!-- DNS Payload 放这里，可放多个 -->
+        <!-- 这里放一个或多个 payload -->
     </array>
     <key>PayloadDisplayName</key>
-    <string>配置文件名称</string>
+    <string>描述文件名称（用户看到的）</string>
     <key>PayloadIdentifier</key>
-    <string>com.example.config</string>
+    <string>com.oskris.配置名</string>
+    <key>PayloadOrganization</key>
+    <string>Oskris</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
     <key>PayloadType</key>
     <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>唯一UUID</string>
+    <string>唯一UUID-外层</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
+    <key>ConsentText</key>
+    <dict>
+        <key>default</key>
+        <string>安装说明文字</string>
+    </dict>
 </dict>
 </plist>
 ```
+
+## Workflow
+
+### Payload类型速查
+
+| PayloadType | 用途 | 多个允许 |
+|-------------|------|----------|
+| `com.apple.dnsSettings.managed` | DNS设置(DoH/DoT) | ✅ True |
+| `com.apple.vpn.managed` | VPN配置 | ✅ True |
+| `com.apple.wifi.managed` | Wi-Fi网络 | ✅ True |
+| `com.apple.security.root` | 根证书 | ✅ True |
+| `com.apple.security.pkcs1` | 证书 | ✅ True |
+| `com.apple.webClip.managed` | 桌面快捷方式 | ✅ True |
+| `com.apple.mail.managed` | 邮件账户 | ✅ True |
+| `com.apple.domains` | 域名管理 | ❌ False |
 
 ### DNS Payload 模板
 
@@ -46,10 +70,10 @@ description: 制作iOS配置描述文件(.mobileconfig),包括DNS设置、广告
         <string>HTTPS</string>
         <key>ServerAddresses</key>
         <array>
-            <string>94.140.14.14</string>
+            <string>IP地址</string>
         </array>
         <key>ServerURL</key>
-        <string>https://dns.adguard-dns.com/dns-query</string>
+        <string>https://DoH地址/dns-query</string>
     </dict>
     <key>OnDemandRules</key>
     <array>
@@ -59,9 +83,9 @@ description: 制作iOS配置描述文件(.mobileconfig),包括DNS设置、广告
         </dict>
     </array>
     <key>PayloadDisplayName</key>
-    <string>显示名称</string>
+    <string>DNS名称</string>
     <key>PayloadIdentifier</key>
-    <string>com.example.dns1</string>
+    <string>com.oskris.xxx.dns1</string>
     <key>PayloadType</key>
     <string>com.apple.dnsSettings.managed</string>
     <key>PayloadUUID</key>
@@ -71,45 +95,41 @@ description: 制作iOS配置描述文件(.mobileconfig),包括DNS设置、广告
 </dict>
 ```
 
-## Workflow
-
 ### 多选功能（关键技巧）
 
-Apple 文档明确说明 `com.apple.dnsSettings.managed` 的 **Duplicates allowed: True**。
+`Duplicates allowed: True` 的 payload 类型，在 `PayloadContent` 数组里放多个同类型 payload（每个不同UUID），安装后全部独立显示，可同时勾选。小白签(xb51.cn)就是用这个原理实现多个DNS同时勾选。
 
-在一个 `.mobileconfig` 的 `PayloadContent` 数组里放多个 DNS payload，每个用不同的 `PayloadUUID` 和 `PayloadIdentifier`，安装后在 **设置 → 通用 → DNS** 页面会显示多个选项，全部可以打勾。
+### 排除特定Wi-Fi网络
 
-这就是小白签(xb51.cn)实现多个"屏蔽企业证书验证"同时勾选的原理。
+在 `OnDemandRules` 中添加排除规则：
 
-### 常用 DNS 服务器
+```xml
+<dict>
+    <key>Action</key>
+    <string>Disconnect</string>
+    <key>SSIDMatch</key>
+    <array>
+        <string>家里Wi-Fi名称</string>
+    </array>
+</dict>
+```
 
-| 服务 | DoH地址 | IP | 功能 |
-|------|---------|-----|------|
-| AdGuard DNS | `https://dns.adguard-dns.com/dns-query` | 94.140.14.14, 94.140.15.15 | 屏蔽广告+追踪 |
-| AdGuard Family | `https://family.adguard-dns.com/dns-query` | 94.140.14.15, 94.140.15.16 | 广告+成人内容 |
-| Cloudflare Security | `https://security.cloudflare-dns.com/dns-query` | 1.1.1.2, 1.0.0.2 | 屏蔽恶意软件 |
-| Quad9 | `https://dns.quad9.net/dns-query` | 9.9.9.9, 149.112.112.112 | 屏蔽恶意域名 |
-| 阿里DNS | `https://dns.alidns.com/dns-query` | 223.5.5.5, 223.6.6.6 | 中国加速 |
-| DNSPod | `https://doh.pub/dns-query` | 119.29.29.29 | 中国加速 |
-
-### 验证文件格式
+### 验证格式
 
 ```python
-python3 -c "import plistlib; plistlib.load(open('file.mobileconfig','rb')); print('格式正确')"
+python3 -c "import plistlib; plistlib.load(open('file.mobileconfig','rb')); print('✅ 格式正确')"
 ```
 
 ### 安装方式
 
-1. 用 iPhone **Safari** 打开文件（其他浏览器不行）
+1. iPhone **Safari** 打开文件（其他浏览器不弹安装提示）
 2. 允许下载 → 设置 → 通用 → VPN、DNS与设备管理 → 安装
-3. DNS设置在 设置 → 通用 → VPN、DNS与设备管理 → DNS
+3. 网页托管时 Content-Type 设为 `application/x-apple-aspen-config`
 
 ## Guidelines
 
-- 每个 payload 必须有唯一的 `PayloadUUID` 和 `PayloadIdentifier`
-- iOS 限制：描述文件只能指定DNS服务器，不能像hosts文件直接屏蔽单个域名
-- 要屏蔽特定域名，需要用带广告过滤的DNS（AdGuard DNS）或自建AdGuard Home
-- `PayloadRemovalDisallowed` 设为 `false` 允许用户删除
-- `ConsentText` 可添加中英文安装说明
-- DNSProtocol 支持: HTTPS (DoH) 和 TLS (DoT)
-- 企业证书屏蔽原理：DNS屏蔽 ppq.apple.com, ocsp.apple.com, crl.apple.com 等域名
+- 每个 payload 必须有唯一 `PayloadUUID` + `PayloadIdentifier`
+- DNSProtocol 支持 `HTTPS`(DoH) 和 `TLS`(DoT)
+- `PayloadRemovalDisallowed` 设 `false` 允许用户卸载
+- 文件可通过 Safari URL 直接安装，或 AirDrop 传输
+- 已有项目参考: `projects/beautycam-adblock/configs/` 里的多选DNS示例

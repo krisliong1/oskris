@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>此描述文件由 oskris.com 制作。
+
+功能：
+• AdGuard DNS 广告屏蔽（屏蔽广告、追踪器、恶意网站）
+• Cloudflare 安全DNS加速（备用）
+
+⚠️ YouTube视频广告需配合AdGuard App使用
+
+安装后在 设置→通用→VPN与设备管理→DNS 中选择使用。</string>
+	</dict>
+	<key>DuplicateDetectionIdentifier</key>
+	<false/>
+	<key>HasRemovalPasscode</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>AdGuard DNS - 屏蔽广告+追踪器+恶意网站+钓鱼网站</string>
+			<key>PayloadDisplayName</key>
+			<string>🛡️ AdGuard 广告屏蔽 DNS</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.adguard-block.63ECFCD4-D91D-4E26-A2C7-7A4B1F3FF6FB</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>63ECFCD4-D91D-4E26-A2C7-7A4B1F3FF6FB</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+				<key>ServerAddresses</key>
+				<array>
+					<string>1.1.1.2</string>
+					<string>1.0.0.2</string>
+					<string>2606:4700:4700::1112</string>
+					<string>2606:4700:4700::1002</string>
+				</array>
+				<key>ServerURL</key>
+				<string>https://security.cloudflare-dns.com/dns-query</string>
+			</dict>
+			<key>PayloadDescription</key>
+			<string>Cloudflare 1.1.1.2 安全DNS - 屏蔽恶意网站+快速解析</string>
+			<key>PayloadDisplayName</key>
+			<string>⚡ Cloudflare 安全+快速 DNS</string>
+			<key>PayloadIdentifier</key>
+			<string>com.oskris.dns.cloudflare-security.D44AD95B-2C70-4AC8-B31A-F17F7BBC1B55</string>
+			<key>PayloadOrganization</key>
+			<string>oskris.com</string>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+			<key>PayloadUUID</key>
+			<string>D44AD95B-2C70-4AC8-B31A-F17F7BBC1B55</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>oskris.com 制作 | AdGuard广告屏蔽 + Cloudflare安全加速 | 屏蔽广告/追踪/恶意网站 + CDN加速</string>
+	<key>PayloadDisplayName</key>
+	<string>🔰 全屏蔽+全加速 DNS</string>
+	<key>PayloadIdentifier</key>
+	<string>com.oskris.fullblock-fullspeed</string>
+	<key>PayloadOrganization</key>
+	<string>oskris.com</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>A69FB3A0-8058-4BA6-9156-95EA7340E254</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>

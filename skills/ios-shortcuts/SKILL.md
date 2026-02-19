@@ -34,7 +34,8 @@ Claude直接生成iOS快捷指令的XML plist源码，用户通过工具链导�
 2. 保存为 `.plist` 文件（通过 /mnt/user-data/outputs/）
 3. 用户在iOS设备上打开该文件
 4. Shortcut Source Helper自动处理：转换为shortcut → 签名 → 导入
-5. 如果在Mac上：`shortcuts sign` CLI工具也可以签名
+5. 如果在Mac上：`shortcuts sign -m anyone -i input.wflow -o output.shortcut`
+6. Helper 也支持通过 SSH 远程签名和 Cloudflare Worker 在线签名
 
 ## Plist文件结构（必须严格遵循）
 
@@ -82,7 +83,7 @@ Claude直接生成iOS快捷指令的XML plist源码，用户通过工具链导�
   <key>WFWorkflowMinimumClientVersion</key>
   <integer>900</integer>
   <key>WFWorkflowClientVersion</key>
-  <integer>2702</integer>
+  <integer>4042</integer>
 </dict>
 </plist>
 ```
@@ -290,18 +291,18 @@ Claude直接生成iOS快捷指令的XML plist源码，用户通过工具链导�
 ```
 
 ### WFCondition 条件类型
-| 值 | 含义 |
-|----|------|
-| 0 | 等于 |
-| 1 | 不等于 |
-| 2 | 大于 |
-| 3 | 大于等于 |
-| 4 | 小于 |
-| 5 | 小于等于 |
-| 99 | 包含 |
-| 999 | 不包含 |
-| 100 | 开头是 |
-| 101 | 结尾是 |
+| 值 | 含义 | 验证来源 |
+|----|------|---------|
+| 0 | 等于 (is) | — |
+| 2 | 包含 (contains) | — |
+| 3 | 开头是 (begins with) | — |
+| 4 | 大于 (greater than) | Helper: Random Number比较 |
+| 5 | 小于等于 (≤) | — |
+| 8 | 不等于 (is not) | — |
+| 99 | 过滤运算符 (filter) | XML_Plist: 文件过滤器 |
+| 100 | 有值 (has any value) | Helper: IP地址检查 |
+| 101 | 没有值 (does not have value) | Import: Extension输入检查 |
+| 999 | 介于 (is between) | — |
 
 ## 图标颜色值
 

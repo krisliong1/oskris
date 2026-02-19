@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Shortcut Source Tool 生态分析报告</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, system-ui, sans-serif; background: #0a0a1a; color: #e0e0e0; padding: 20px; line-height: 1.6; }
+h1 { color: #4ecca3; font-size: 1.8em; margin-bottom: 8px; }
+h2 { color: #e8b86d; font-size: 1.3em; margin: 24px 0 12px; border-bottom: 1px solid #333; padding-bottom: 6px; }
+h3 { color: #82b1ff; font-size: 1.1em; margin: 16px 0 8px; }
+.subtitle { color: #888; font-size: 0.9em; margin-bottom: 20px; }
+.card { background: #12122a; border-radius: 12px; padding: 16px; margin: 12px 0; border: 1px solid #222; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.badge { background: #4ecca3; color: #000; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+.badge.orange { background: #e8b86d; }
+.badge.blue { background: #82b1ff; }
+.badge.purple { background: #b388ff; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin: 12px 0; }
+.stat { background: #1a1a3e; padding: 10px; border-radius: 8px; text-align: center; }
+.stat-value { font-size: 1.5em; font-weight: bold; color: #4ecca3; }
+.stat-label { font-size: 0.75em; color: #888; }
+.action-list { max-height: 300px; overflow-y: auto; }
+.action-item { padding: 4px 8px; border-left: 3px solid #333; margin: 2px 0; font-size: 0.85em; font-family: monospace; }
+.action-item.flow { border-left-color: #4ecca3; }
+.action-item.comment { border-left-color: #e8b86d; font-style: italic; }
+.action-item.http { border-left-color: #82b1ff; }
+.action-item.script { border-left-color: #b388ff; }
+.ecosystem { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .ecosystem { grid-template-columns: 1fr; } }
+.arrow { color: #4ecca3; font-size: 1.5em; text-align: center; margin: 8px 0; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.feature { background: #1a1a3e; padding: 10px; border-radius: 8px; }
+.feature-icon { font-size: 1.3em; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 0.85em; }
+th, td { padding: 6px 10px; text-align: left; border-bottom: 1px solid #222; }
+th { color: #4ecca3; font-weight: 600; }
+.highlight { background: #1a3a2a; }
+</style></head><body>
+<h1>🔧 Shortcut Source Tool 生态分析</h1>
+<p class="subtitle">by gluebyte (routinehub.co) — 4 个快捷指令组成的专业开发工具链</p>
+<h2>📐 生态架构</h2>
+<div class="ecosystem">
+<div class="card">
+<div class="card-header"><strong>🛠️ Shortcut Source Tool</strong><span class="badge purple">主 IDE (424 actions)</span></div>
+<p style="font-size:0.85em;color:#aaa;">查看/编辑/保存/修复/对比/Web Review</p>
+</div>
+<div class="card">
+<div class="card-header"><strong>🔧 Scut Source Helper</strong><span class="badge blue">辅助库 (97 actions)</span></div>
+<p style="font-size:0.85em;color:#aaa;">获取源码/导入/SSH/解压</p>
+</div>
+<div class="card">
+<div class="card-header"><strong>📄 Shortcut to XML Plist</strong><span class="badge orange">转换器 (11 actions)</span></div>
+<p style="font-size:0.85em;color:#aaa;">选择快捷指令→导出 XML plist</p>
+</div>
+<div class="card">
+<div class="card-header"><strong>📥 Import Shortcut</strong><span class="badge">导入器 (7 actions)</span></div>
+<p style="font-size:0.85em;color:#aaa;">.shortcut 文件→导入到快捷指令 app</p>
+</div>
+</div>
+<div class="arrow">⬇️ 主工具调用 Helper → Helper 调用 Import</div>
+<h2>⭐ 主工具功能清单</h2>
+<div class="feature-grid">
+<div class="feature"><span class="feature-icon">🧐</span> <strong>Quick Look 源码</strong><br><span style="font-size:0.8em;color:#888;">直接预览 plist 源码</span></div>
+<div class="feature"><span class="feature-icon">📝</span> <strong>保存源码</strong><br><span style="font-size:0.8em;color:#888;">导出为文件</span></div>
+<div class="feature"><span class="feature-icon">💻</span> <strong>分享源码</strong><br><span style="font-size:0.8em;color:#888;">通过系统分享</span></div>
+<div class="feature"><span class="feature-icon">✏️</span> <strong>恢复源码</strong><br><span style="font-size:0.8em;color:#888;">从编辑中恢复</span></div>
+<div class="feature"><span class="feature-icon">🌈</span> <strong>自定义颜色</strong><br><span style="font-size:0.8em;color:#888;">设置快捷指令图标颜色</span></div>
+<div class="feature"><span class="feature-icon">❓</span> <strong>导入问题处理</strong><br><span style="font-size:0.8em;color:#888;">替换 '++' 为换行</span></div>
+<div class="feature"><span class="feature-icon">✂️✂️</span> <strong>删除 Actions</strong><br><span style="font-size:0.8em;color:#888;">删除空注释之间的 actions</span></div>
+<div class="feature"><span class="feature-icon">✂️</span> <strong>复制 Actions</strong><br><span style="font-size:0.8em;color:#888;">复制空注释之间的 actions</span></div>
+<div class="feature"><span class="feature-icon">🔍🔍</span> <strong>对比快捷指令</strong><br><span style="font-size:0.8em;color:#888;">比较两个快捷指令差异</span></div>
+<div class="feature"><span class="feature-icon">🔍</span> <strong>Web Review</strong><br><span style="font-size:0.8em;color:#888;">生成 HTML 可视化预览</span></div>
+<div class="feature"><span class="feature-icon">🛠️</span> <strong>修复损坏</strong><br><span style="font-size:0.8em;color:#888;">检测并修复结构错误</span></div>
+<div class="feature"><span class="feature-icon">📤</span> <strong>格式转换</strong><br><span style="font-size:0.8em;color:#888;">plist ↔ JSON 互转</span></div>
+</div>
+<h2>🛠️ Shortcut Source Tool (主工具)</h2>
+<div class="stats">
+<div class="stat"><div class="stat-value">424</div><div class="stat-label">Actions</div></div>
+<div class="stat"><div class="stat-value">54</div><div class="stat-label">类型数</div></div>
+<div class="stat"><div class="stat-value">4042.0.4</div><div class="stat-label">版本</div></div>
+</div>
+<h3>Action 类型分布 (Top 10)</h3>
+<table><tr><th>Action</th><th>数量</th></tr>
+<tr><td><code>conditional</code></td><td>136</td></tr>
+<tr><td><code>replace</code></td><td>47</td></tr>
+<tr><td><code>choosefrommenu</code></td><td>23</td></tr>
+<tr><td><code>setitemname</code></td><td>19</td></tr>
+<tr><td><code>gettext</code></td><td>16</td></tr>
+<tr><td><code>exit</code></td><td>13</td></tr>
+<tr><td><code>url</code></td><td>12</td></tr>
+<tr><td><code>setvalueforkey</code></td><td>10</td></tr>
+<tr><td><code>setvariable</code></td><td>9</td></tr>
+<tr><td><code>gettypeaction</code></td><td>9</td></tr>
+</table>
+<h3>关键内容</h3>
+<div class="action-list">
+<div class="action-item comment"><span style="color:#555">[0]</span> Copy and paste multiple actions, view/edit/save/import/repair or web-review shortcuts
+2025-10-21 	v6.3
+https://routinehu</div>
+<div class="action-item http"><span style="color:#555">[5]</span> downloadurl</div>
+<div class="action-item http"><span style="color:#555">[12]</span> downloadurl</div>
+<div class="action-item flow"><span style="color:#555">[32]</span> → 调用: Shortcut Source Helper</div>
+<div class="action-item http"><span style="color:#555">[41]</span> downloadurl</div>
+<div class="action-item http"><span style="color:#555">[42]</span> downloadurl</div>
+<div class="action-item flow"><span style="color:#555">[79]</span> → 调用: Shortcut Source Helper</div>
+<div class="action-item flow"><span style="color:#555">[124]</span> → 调用: Shortcut Source Helper</div>
+<div class="action-item comment"><span style="color:#555">[137]</span> Please install the Actions app
+
+https://apps.apple.com/app/id1586435171</div>
+<div class="action-item script"><span style="color:#555">[144]</span> runapplescript</div>
+<div class="action-item script"><span style="color:#555">[223]</span> runjavascriptforautomation</div>
+<div class="action-item script"><span style="color:#555">[225]</span> runshellscript</div>
+<div class="action-item script"><span style="color:#555">[234]</span> runshellscript</div>
+<div class="action-item script"><span style="color:#555">[242]</span> runapplescript</div>
+<div class="action-item flow"><span style="color:#555">[273]</span> → 调用: Shortcut Source Helper</div>
+<div class="action-item script"><span style="color:#555">[289]</span> runshellscript</div>
+<div class="action-item comment"><span style="color:#555">[293]</span> 🛑  Please download a-Shell mini  🛑</div>
+<div class="action-item script"><span style="color:#555">[316]</span> runapplescript</div>
+<div class="action-item flow"><span style="color:#555">[332]</span> → 调用: Shortcut Source Helper</div>
+<div class="action-item script"><span style="color:#555">[389]</span> runjavascriptonwebpage</div>
+<div class="action-item flow"><span style="color:#555">[423]</span> → 调用: Shortcut Source Helper</div>
+</div>
+<h2>🔧 Scut Source Helper (辅助库)</h2>
+<div class="stats">
+<div class="stat"><div class="stat-value">97</div><div class="stat-label">Actions</div></div>
+<div class="stat"><div class="stat-value">34</div><div class="stat-label">类型数</div></div>
+<div class="stat"><div class="stat-value">4042.0.4</div><div class="stat-label">版本</div></div>
+</div>
+<h3>Action 类型分布 (Top 10)</h3>
+<table><tr><th>Action</th><th>数量</th></tr>
+<tr><td><code>conditional</code></td><td>31</td></tr>
+<tr><td><code>choosefrommenu</code></td><td>11</td></tr>
+<tr><td><code>comment</code></td><td>5</td></tr>
+<tr><td><code>exit</code></td><td>5</td></tr>
+<tr><td><code>openurl</code></td><td>4</td></tr>
+<tr><td><code>alert</code></td><td>4</td></tr>
+<tr><td><code>downloadurl</code></td><td>3</td></tr>
+<tr><td><code>replace</code></td><td>3</td></tr>
+<tr><td><code>setitemname</code></td><td>3</td></tr>
+<tr><td><code>count</code></td><td>2</td></tr>
+</table>
+<h3>关键内容</h3>
+<div class="action-list">
+<div class="action-item comment"><span style="color:#555">[0]</span> Outputs or imports shortcut source.
+2025-07-28 	v2.0.1
+https://routinehub.co/user/gluebyte
+https://bsky.app/profile/glue</div>
+<div class="action-item http"><span style="color:#555">[5]</span> downloadurl</div>
+<div class="action-item http"><span style="color:#555">[12]</span> downloadurl</div>
+<div class="action-item comment"><span style="color:#555">[24]</span> Choose shortcut and return plist</div>
+<div class="action-item comment"><span style="color:#555">[52]</span> Import plist input as shortcut</div>
+<div class="action-item script"><span style="color:#555">[54]</span> runshellscript</div>
+<div class="action-item http"><span style="color:#555">[65]</span> downloadurl</div>
+<div class="action-item comment"><span style="color:#555">[79]</span> 
+◥◤    ADD SSH LOGIN INFO    ◥◤
+</div>
+<div class="action-item http"><span style="color:#555">[80]</span> runsshscript</div>
+<div class="action-item comment"><span style="color:#555">[81]</span> 
+◢◣    ADD SSH LOGIN INFO    ◢◣
+</div>
+<div class="action-item http"><span style="color:#555">[83]</span> runsshscript</div>
+</div>
+<h2>📄 Shortcut to XML Plist (转换器)</h2>
+<div class="stats">
+<div class="stat"><div class="stat-value">11</div><div class="stat-label">Actions</div></div>
+<div class="stat"><div class="stat-value">9</div><div class="stat-label">类型数</div></div>
+<div class="stat"><div class="stat-value">4042.0.4</div><div class="stat-label">版本</div></div>
+</div>
+<h3>Action 类型分布 (Top 10)</h3>
+<table><tr><th>Action</th><th>数量</th></tr>
+<tr><td><code>setvariable</code></td><td>2</td></tr>
+<tr><td><code>setitemname</code></td><td>2</td></tr>
+<tr><td><code>getmyworkflows</code></td><td>1</td></tr>
+<tr><td><code>files</code></td><td>1</td></tr>
+<tr><td><code>choosefromlist</code></td><td>1</td></tr>
+<tr><td><code>getitemname</code></td><td>1</td></tr>
+<tr><td><code>text</code></td><td>1</td></tr>
+<tr><td><code>previewdocument</code></td><td>1</td></tr>
+<tr><td><code>save</code></td><td>1</td></tr>
+</table>
+<h3>关键内容</h3>
+<div class="action-list">
+</div>
+<h2>📥 Import Shortcut (导入器)</h2>
+<div class="stats">
+<div class="stat"><div class="stat-value">7</div><div class="stat-label">Actions</div></div>
+<div class="stat"><div class="stat-value">6</div><div class="stat-label">类型数</div></div>
+<div class="stat"><div class="stat-value">4042.0.4</div><div class="stat-label">版本</div></div>
+</div>
+<h3>Action 类型分布 (Top 10)</h3>
+<table><tr><th>Action</th><th>数量</th></tr>
+<tr><td><code>conditional</code></td><td>2</td></tr>
+<tr><td><code>select</code></td><td>1</td></tr>
+<tr><td><code>getlink</code></td><td>1</td></tr>
+<tr><td><code>match</code></td><td>1</td></tr>
+<tr><td><code>url</code></td><td>1</td></tr>
+<tr><td><code>openurl</code></td><td>1</td></tr>
+</table>
+<h3>关键内容</h3>
+<div class="action-list">
+</div>
+<h2>🧠 关键技术发现</h2>
+<div class="card">
+<table>
+<tr><th>发现</th><th>细节</th></tr>
+<tr><td>AEA1 格式</td><td>iOS 16+ 使用 Apple Encrypted Archive 签名 .shortcut 文件</td></tr>
+<tr><td>压缩算法</td><td>LZVN (bvxn) 用于小文件, LZFSE (bvx2) 用于大文件</td></tr>
+<tr><td>负载位置</td><td>压缩块在文件尾部 (offset ~20984)</td></tr>
+<tr><td>签名结构</td><td>Header(12B) + CertChain(~2204B) + Signature + Padding + Payload</td></tr>
+<tr><td>流程控制</td><td>WFControlFlowMode: 0=开始, 1=中间, 2=结束; GroupingIdentifier 配对</td></tr>
+<tr><td>变量引用</td><td>WFTextTokenString + U+FFFC 占位符 + attachmentsByRange</td></tr>
+<tr><td>依赖链</td><td>Source Tool → Helper → Import (通过 runworkflow 调用)</td></tr>
+</table>
+</div>
+<h2>📦 已创建 Skills</h2>
+<div class="card">
+<table>
+<tr><th>Skill</th><th>类型</th><th>功能</th></tr>
+<tr class="highlight"><td><code>ios-shortcuts-parser</code></td><td>Tool</td><td>解析 AEA1 格式、提取 plist、分析结构、验证完整性</td></tr>
+<tr><td><code>ios-shortcuts-builder</code></td><td>Tool</td><td>程序化创建快捷指令、构建 actions/流程控制/变量引用</td></tr>
+<tr class="highlight"><td><code>ios-shortcuts-studio</code></td><td>Agent</td><td>协调 parser+builder 完成分析/创建/修复/对比/可视化</td></tr>
+</table>
+</div>
+<p style="text-align:center;color:#555;margin-top:24px;font-size:0.8em;">Generated by Claude · iOS Shortcuts Studio</p>
+</body></html>

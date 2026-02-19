@@ -5,173 +5,178 @@ description: Professional frontend development implementation following design s
 
 # Frontend Builder Skill
 
-实现网站设计为生产就绪代码。强调最佳实践、性能和代码质量。
+将设计方案转化为可运行的专业级代码。
 
-## When to Use
-- 实现已批准的设计稿
-- 构建网站布局
-- 创建响应式组件
+## 使用时机
+
+- 实现设计稿为代码
+- 构建响应式网站
 - 开发交互功能
 - 代码审查和优化
 
-## Input Requirements
-- Design mockups/wireframes (from design-consultant)
-- Technical requirements (from requirements-analyst)
-- Content and assets ready
-- Hosting environment prepared
+## 技术选型指南
 
-## Technology Stack
+| 场景 | 推荐技术 | 原因 |
+|------|---------|------|
+| 简单展示站(5-10页) | 纯HTML + Tailwind CSS + Vanilla JS | 快、轻、便宜 |
+| 需要CMS | WordPress + 自定义主题 | 客户友好 |
+| 电商 | WordPress + WooCommerce | 成熟生态 |
+| 自定义WebApp | Next.js + React + Tailwind | 现代、可扩展 |
+| 快速原型/Landing Page | Claude直接生成HTML | 最快速度 |
 
-### Simple Sites (5-10 pages)
-**Static HTML + CSS + JS** — 快速、轻量、低成本
+## 静态网站结构
+
 ```
 ├── index.html
+├── about.html
+├── services.html
+├── contact.html
 ├── css/style.css
 ├── js/script.js
 └── images/
 ```
 
-### WordPress Sites (SME标配)
-**WordPress + Custom Theme** — 客户友好CMS
-Essential Plugins: WooCommerce, FPX/Stripe, Yoast/RankMath, WP Rocket
+## WordPress主题结构
 
-### E-commerce
-**WordPress + WooCommerce** — 成熟生态
-Payment: FPX, Boost, TNG, GrabPay | Shipping: Ninja Van, J&T
+```
+├── style.css (主题信息)
+├── functions.php
+├── index.php / header.php / footer.php / page.php / single.php
+├── template-parts/
+├── assets/css/ + js/ + images/
+└── inc/custom-functions.php
+```
 
-### Custom Web Apps
-**Next.js / React + Tailwind CSS** — 现代、SEO友好、可扩展
+**必备插件**: WooCommerce(电商), FPX/Stripe(支付), Ninja Van/J&T(物流), Yoast/RankMath(SEO), WP Rocket+Imagify(性能)
 
-## Development Best Practices
+## 开发规范
 
-### 1. Code Organization
-HTML: Semantic structure with proper meta tags, OG tags, structured data (JSON-LD)
-CSS: Variables for colors/fonts/spacing, mobile-first media queries, BEM naming
-JS: Defer non-critical scripts, use modules, minimal dependencies
+### HTML
+- 语义化标签: header, nav, main, section, article, footer
+- SEO必备: meta description, og tags, structured data
+- 无障碍: alt属性, aria标签, 键盘导航
+- charset UTF-8, viewport meta
 
-### 2. Responsive (Mobile-First)
+### CSS (优先Tailwind)
+- CSS变量管理颜色、字体、间距
+- Mobile-first响应式: 640px / 1024px / 1280px
+- 避免 !important
+- BEM命名(如不用Tailwind)
+
+### CSS变量模板
 ```css
-/* Base: mobile */
-.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-/* Tablet 768px */
-@media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-/* Desktop 1024px */
-@media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+:root {
+  --primary: #0A192F;
+  --secondary: #00D1FF;
+  --accent: #F97316;
+  --text-dark: #111827;
+  --text-light: #6B7280;
+  --bg-light: #F9FAFB;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
 ```
-Test: 375px (iPhone SE) → 768px (iPad) → 1280px (Laptop) → 1920px (Desktop)
 
-### 3. Performance
-Images: WebP + fallback, srcset for responsive, loading="lazy"
-CSS: Minify, remove unused, inline critical CSS
-JS: defer/async, code splitting, tree shaking
-Target: LCP <2.5s, FID <100ms, CLS <0.1
+### JavaScript
+- Vanilla JS优先，按需引入库
+- 事件委托减少监听器
+- 图片懒加载: loading="lazy"
+- 关键CSS内联，JS异步加载
 
-### 4. Accessibility (WCAG 2.2 AA)
-- Semantic HTML: header, nav, main, article, footer (不用div套div)
-- ARIA labels for buttons/nav/inputs
-- Keyboard navigation with visible focus states
-- Color contrast ≥4.5:1
-- Skip-to-content link
+## 核心组件清单
 
-### 5. Forms
-- Label + input配对, required + aria-required
-- Client-side validation + server-side validation
-- AJAX submit with loading state and error handling
-- Phone pattern: `[0-9]{10,11}` (Malaysian format)
+每个网站必须实现:
 
-### 6. SEO Implementation
+### 1. 导航栏
+- 固定顶部，滚动时半透明背景
+- 移动端汉堡菜单
+- 当前页面高亮
+- CTA按钮在导航栏中
+
+### 2. Hero Section
+- 全屏或大尺寸背景
+- 标题(h1) + 副标题 + CTA按钮
+- 移动端文字居中，桌面端可左对齐
+
+### 3. 服务/功能展示
+- 卡片网格布局(移动1列，桌面3列)
+- 图标 + 标题 + 描述
+- Hover效果
+
+### 4. 社会证明
+- 客户评价轮播
+- 合作品牌Logo条
+- 数据统计(计数器动画)
+
+### 5. 联系表单
+- 姓名、邮箱/电话、消息
+- 前端验证 + 后端处理
+- WhatsApp快捷按钮(马来西亚必备)
+
+### 6. Footer
+- 联系信息 + 快速链接 + 社交媒体
+- 版权信息
+- 隐私政策链接
+
+## 性能优化
+
+### 图片
+- WebP格式优先
+- srcset响应式图片
+- 压缩: 质量80%
+- 懒加载: loading="lazy"
+- 尺寸: Hero ≤200KB, 缩略图 ≤50KB
+
+### 加载速度
+- 关键CSS内联到head
+- JS放body底部或async/defer
+- 字体: font-display: swap + preload
+- 目标: LCP <2.5s, FID <100ms, CLS <0.1
+
+### SEO基础
 ```html
-<title>50-60 chars | Brand</title>
-<meta name="description" content="150-160 chars">
-<meta property="og:title/description/image/url">
-<link rel="canonical" href="...">
-<script type="application/ld+json">{ "@context": "https://schema.org", ... }</script>
-```
-Structured Data types: LocalBusiness, Product, Service, FAQ, BreadcrumbList
-
-### 7. Malaysian Integrations
-
-**WhatsApp CTA** (fixed bottom-right):
-```html
-<a href="https://wa.me/60XXXXXXXXX?text=Hi" class="whatsapp-btn">Chat on WhatsApp</a>
+<title>页面标题 | 站点名</title>
+<meta name="description" content="描述">
+<link rel="canonical" href="URL">
+<script type="application/ld+json">结构化数据</script>
 ```
 
-**Payment**: Billplz API (FPX), Stripe (cards), Boost/TNG (e-wallets)
-**Maps**: Google Maps embed with business marker
-**Multi-language**: EN/BM/CN switcher
+## 动画规范
 
-## Component Patterns
+- 过渡: 0.3s ease
+- 入场动画: CSS @keyframes, IntersectionObserver触发
+- Hover: transform scale(1.02), box-shadow增强
+- 避免: layout触发动画(用transform/opacity)
+- prefers-reduced-motion媒体查询
 
-### Navigation Bar
-- Logo left + menu center/right + CTA button
-- Mobile: hamburger menu with slide-in drawer
-- Sticky on scroll with backdrop blur
-- Active page indicator
+## 马来西亚特殊要求
 
-### Hero Section
-- Full-width background (image/gradient/video)
-- H1 headline + subtitle + primary CTA
-- Trust indicators below CTA
-- Responsive: stack vertically on mobile
+- WhatsApp浮动按钮(固定右下角)
+- 多语言: EN/BM/CN (hreflang标签)
+- 支付集成: FPX、Boost、TNG、GrabPay
+- 谷歌地图嵌入(本地商家)
+- 马来西亚节日配色主题
 
-### Service Cards
-- Icon/image + title + short description + link
-- Grid: 3-col desktop, 2-col tablet, 1-col mobile
-- Hover effect: subtle shadow/scale
-- Consistent card height
+## 交付清单
 
-### Testimonials
-- Avatar + name + role + quote
-- Carousel or grid layout
-- Star rating if applicable
+- [ ] 所有页面完成且响应式
+- [ ] 无console错误
+- [ ] PageSpeed ≥80
+- [ ] SEO meta完整
+- [ ] 表单可提交
+- [ ] WhatsApp集成
+- [ ] 跨浏览器测试(Chrome/Safari/Firefox)
+- [ ] 图片已压缩+懒加载
+- [ ] 无障碍基础通过
 
-### Contact Section
-- Split layout: form left + info right
-- WhatsApp + phone + email + address
-- Google Maps embed
-- Business hours
+## 整合其他Skills
 
-### Footer
-- Multi-column: company, services, contact, social
-- Copyright + privacy + terms links
-- WhatsApp floating button
-
-## WordPress Checklist
-- [ ] Child theme created (not editing parent)
-- [ ] Custom post types registered
-- [ ] ACF fields configured
-- [ ] SEO plugin configured
-- [ ] Caching enabled (WP Rocket/LiteSpeed)
-- [ ] Security plugin installed (Wordfence)
-- [ ] Auto-updates configured
-- [ ] Backup solution (UpdraftPlus)
-- [ ] SSL certificate active
-
-## Testing Checklist
-- [ ] All links working (no 404s)
-- [ ] Forms submit correctly
-- [ ] Images load and have alt text
-- [ ] Mobile responsive (3 breakpoints)
-- [ ] Cross-browser (Chrome, Safari, Firefox)
-- [ ] Page speed <3s (GTmetrix/PageSpeed Insights)
-- [ ] Accessibility scan passed (axe DevTools)
-- [ ] SEO audit passed (Lighthouse)
-- [ ] SSL/HTTPS working
-- [ ] Analytics installed (Google Analytics 4)
-- [ ] Favicon and OG images set
-- [ ] 404 page customized
-
-## Handover Documentation
-每个项目交付时提供:
-1. **Technical spec** — 技术架构、文件结构、依赖列表
-2. **Content guide** — 如何更新内容、图片尺寸规范
-3. **Login credentials** — WordPress admin, hosting, domain
-4. **Maintenance guide** — 更新插件、备份流程
-5. **Training video** — 基本操作录屏(可选)
-
-## Quality Standards
-- Core Web Vitals全绿
-- Lighthouse Score: Performance ≥90, Accessibility ≥90, SEO ≥90
-- W3C Validator零error
-- 无console errors
-- 所有功能在slow 3G下可用
+```
+design-consultant → 输出设计规格
+  ↓
+frontend-builder (本skill) → 输出可运行网站
+  ↓
+reviewer → 质量检查
+  ↓
+launcher → 部署上线
+```

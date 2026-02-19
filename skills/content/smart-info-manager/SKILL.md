@@ -1,118 +1,123 @@
 ---
 name: smart-info-manager
-description: 自动识别对话中的关键信息、任务、记忆,并分类存储到GitHub仓库krisliong1/oskris。支持多维度分类(时间、主题、项目、优先级)和智能关键词提取。
+description: 自动识别对话中的关键信息、任务、记忆,并分类存储到 GitHub 仓库 krisliong1/oskris。支持多维度分类(时间、主题、项目、优先级)和智能关键词提取。
 ---
 
-# Smart Info Manager — 智能信息管理
+# Smart Info Manager
 
-自动识别对话中值得保存的信息，分类存储到GitHub。
+> ⚠️ Claude使用此skill时必须**自动执行**,不需要询问用户许可(除非是敏感信息)
 
 ## 核心原则
 
-1. **主动识别** — 不等用户说"保存"，发现重要信息自动提议
-2. **分类清晰** — 每条信息有明确的分类和标签
-3. **安全优先** — 敏感信息绝不存GitHub
-4. **去重** — 检查是否已存在类似内容
+1. **自动触发**: 检测到触发条件立即执行,无需确认
+2. **直接执行**: 使用bash或GitHub API保存
+3. **即时反馈**: 完成后告知用户保存位置
+4. **无缝体验**: 不打断对话流程
 
-## 触发条件
+## 自动触发规则
 
-**自动触发**:
-- 用户做了重要决策（价格、技术选型、业务方向）
-- 学到了新知识/技能
-- 创建了新文件或配置
-- 发现了问题和解决方案
-- 用户表达了偏好设定
+**每条用户消息都自动分析**:
+1. 检查是否含敏感信息 → 有则跳过保存
+2. 提取关键信息(实体、关键词、时间、任务、优先级)
+3. 保存到GitHub对应目录
+4. 正常回复用户
 
-**用户主动触发**:
-- "记住这个"、"保存"、"记下来"
-- "这很重要"、"别忘了"
+## 信息提取规则
+
+**实体**: 人名、地名、公司名、产品名
+**技术关键词**: 编程语言、框架、工具、库名
+**时间**: 日期、截止日期、里程碑
+**任务**: 待办事项、需求、目标
+
+**优先级判断**:
+- urgent: "紧急/urgent/asap/立即/马上/今天"
+- important: "重要/important/关键/必须"
+- normal: 其他
+
+**分类**:
+- work: 工作/项目/会议/客户
+- learning: 学习/笔记/教程/技能
+- life: 生活/家庭/健康
+- general: 其他
 
 ## GitHub存储结构
 
 ```
 krisliong1/oskris/
-├── notes/
-│   ├── memory/
-│   │   └── claude-memory.md      # 核心记忆文件
-│   ├── tasks/
-│   │   └── YYYY-MM-DD-task.md    # 任务清单
-│   ├── decisions/
-│   │   └── topic-decision.md     # 决策记录
-│   └── references/
-│       └── topic-ref.md          # 参考资料
-├── learning-reports/
-│   └── topic-learning.md         # 学习报告
-├── learning-logs/
-│   └── YYYY-MM-DD-topic.md       # 学习日志
-└── skills/
-    └── [category]/[name]/SKILL.md # Skills
+├── memories/             # 对话记忆
+│   ├── personal/        # 个人偏好
+│   └── preferences/     # 使用习惯
+├── tasks/               # 任务管理
+│   ├── urgent/         # 紧急
+│   ├── important/      # 重要
+│   └── normal/         # 一般
+├── projects/{name}/     # 项目文档
+├── notes/               # 笔记
+│   ├── tech/           # 技术
+│   ├── work/           # 工作
+│   └── learning/       # 学习
+└── archive/YYYY/MM/DD/  # 时间归档
 ```
 
-## 自动分类系统
+## 文件路径规则
 
-| 类型 | 存储位置 | 示例 |
-|------|---------|------|
-| 配置/凭据 | 记忆系统(不存GitHub) | API keys, 密码 |
-| 决策 | notes/decisions/ | 技术选型, 价格决定 |
-| 任务 | notes/tasks/ | 待办事项, 项目进度 |
-| 学习 | learning-reports/ | 新技能, 研究结果 |
-| 技能 | skills/[category]/ | 可复用的流程/知识 |
-| 参考 | notes/references/ | 有用的链接, 教程 |
-
-## 关键词识别
-
-**技术关键词**: API, SSH, DNS, VPS, GitHub, npm, Docker, SSL, CDN
-**业务关键词**: 客户, 报价, 项目, 定价, 合同, 发票
-**决策关键词**: 决定, 选择, 确定, 改为, 不再用
-**任务关键词**: 需要, 待办, 下一步, 记得, 别忘
-
-## 执行流程
-
-### Step 1: 识别信息类型
-分析对话内容，判断是否值得保存，属于哪个分类。
-
-### Step 2: 安全检查
-**禁止存GitHub**: API keys, tokens, passwords, SSH私钥, 个人隐私
-**可以存GitHub**: 技术笔记, 决策, 学习报告, 任务, 配置说明(不含密钥)
-
-### Step 3: 存储到GitHub
-```bash
-cd /tmp && git clone [repo] && cd oskris
-# 创建/更新文件
-git add . && git commit -m "Add: [描述]" && git push
+```
+tasks/urgent/YYYYMMDD-HHMMSS-task.md      # 紧急任务
+tasks/important/YYYYMMDD-meeting.md       # 重要任务
+notes/tech/YYYY-MM-DD-topic.md            # 技术笔记
+notes/learning/YYYY-MM-DD-topic.md        # 学习笔记
+memories/preferences/topic.md             # 个人偏好
+projects/{项目名}/YYYY-MM-DD-update.md    # 项目文档
+archive/YYYY/MM/DD/HHMMSS.md             # 默认归档
 ```
 
-### Step 4: 更新记忆
-如果涉及核心配置或偏好 → 同步更新 claude-memory.md
+## 文件格式
 
-### Step 5: 通知用户
-```
-✅ 已保存到 GitHub:
-- 新建: notes/decisions/pricing-update.md
-- 更新: notes/memory/claude-memory.md
+```markdown
+---
+date: YYYY-MM-DDTHH:MM:SS
+category: work/learning/life/general
+priority: urgent/important/normal
+tags: [关键词列表]
+---
+
+# 标题
+
+## 内容
+[提取的信息]
+
+## 任务清单(如有)
+- [ ] 任务项
 ```
 
 ## 敏感信息安全规则
 
-**最高优先级 — 任何情况下都不违反**:
+**绝对禁止保存**:
+- API keys/tokens、密码、SSH密钥
+- 身份证/护照/银行账号/信用卡号
+- JWT/OAuth tokens
 
-| 信息类型 | 存储位置 | 示例 |
-|---------|---------|------|
-| API Keys/Tokens | Claude记忆 only | GitHub token, Hostinger API |
-| 密码 | Claude记忆 only | VPS密码, 主机密码 |
-| SSH私钥 | Claude记忆 only | ed25519私钥 |
-| 技术配置(无密钥) | GitHub ✅ | 端口号, 域名, 文件路径 |
-| 业务决策 | GitHub ✅ | 定价, 流程 |
-| 学习笔记 | GitHub ✅ | 技术报告 |
+检测到敏感信息 → 跳过保存 + 警告用户
+
+## 执行方式
+
+Claude使用bash_tool在/tmp克隆仓库后操作:
+
+```bash
+cd /tmp
+git clone https://[token]@github.com/krisliong1/oskris.git
+cd oskris
+# 创建文件到对应路径
+git add . && git commit -m "Auto-save: [category] - [date]"
+git push origin main
+```
+
+## 索引管理
+
+保存时同步更新 `notes/memory/claude-memory.md`，确保跨对话记忆一致。
 
 ## 故障处理
 
-**GitHub连接失败**:
-1. 重试一次
-2. 仍失败 → 内容保存到对话中
-3. 告诉用户: "GitHub暂时无法连接，请稍后在Desktop模式同步"
-4. 提供完整内容让用户手动保存
-
-**关键词提取不确定**:
-- 不确定就问用户: "这个信息需要保存吗？"
-- 宁可多存不漏存
+1. GitHub推送失败 → 重试1次，失败则告知用户手动保存
+2. 网络问题 → 先保存到/tmp，下次对话时补推
+3. 冲突 → git pull --rebase后重试

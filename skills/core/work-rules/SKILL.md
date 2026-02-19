@@ -1,142 +1,117 @@
 ---
 name: work-rules
-description: Core working principles for all interactions. Covers keyword system (3 levels), placeholder rules, API key management, search-first verification, quality standards, GitHub skill management, and security. Foundation skill that governs all other skills. Merges former core-work-rules.
+description: Core working principles and rules for all interactions. Automatically applied to every conversation. Defines keyword system, code modification levels, verification requirements, placeholder prohibition, credential management, and quality standards. Foundation skill that governs all other skills.
 ---
 
 # Work Rules — 核心工作规则
 
-永久生效，适用于所有项目和对话。
+永久生效，适用于所有项目和Skills。
 
 ## 优先级顺序
+
 ```
-安全规则 > 工作规则 > 用户指令 > 默认行为
+安全规则 > 工作规则 > 特定Skill规则 > 用户指令 > 默认行为
 ```
 
-## 关键词系统（3级）
+## 关键词系统（3个级别）
 
-### 🔴 Level 1: 完全强制重新生成
-**触发词**: "完全强制重新生成"、"从零开始"、"全部删除重做"、"Complete Force Regenerate"
+### 🔴 级别1：完全强制重新生成
+**触发词**: "完全强制重新生成" / "从零开始" / "全部删除重做"
 
-执行: 删除所有旧代码，不复用任何部分，当作全新项目从零创建。
-场景: 架构彻底错误，需求完全改变。
+- 删除所有旧代码，不复用任何内容
+- 当作全新项目，从零创建
+- 适用：架构彻底错误、需求完全改变
 
-### 🟡 Level 2: 强制重新生成（带验证）
-**触发词**: "强制重新生成"、"强制重写"、"重新做一遍"、"Force Regenerate"
+### 🟡 级别2：强制重新生成（带验证）
+**触发词**: "强制重新生成" / "强制重写" / "重新做一遍"
 
-执行:
-1. 检查旧代码哪些正确
-2. 搜索验证（不盲目信任自己）
-3. 复用正确部分，修复错误部分
-4. 优先使用GitHub Star多的已验证代码
+1. 检查旧代码，验证哪些正确
+2. 搜索外部验证方案（GitHub高星项目、官方文档）
+3. 复用正确部分，只重写有问题的
+4. 报告：✅已验证 / ⚠️新写的待测试
+5. **永远不说"100%正确"** — 用"✅ 已验证(来源)"代替
 
-**永远不说"100%正确"** — 只能说"已验证"或"需要进一步测试"。
+### 🟢 级别3：默认（最小修改）
+**触发词**: "修复" / "优化" / "改进" / "调整" / "重新做"(不带"强制")
 
-### 🟢 Level 3: 默认（最小修改）
-**触发词**: "修复"、"优化"、"改进"、"调整"、"再生成一次"（无"强制"前缀）
+- 只改有问题的部分，保持其他不变
+- 能改1行不改10行，能改1函数不改整个文件
+- 增量优化，最小化Token消耗
 
-执行: 分析具体问题，只改有问题的部分，能改1行不改10行，最小化Token消耗。
-
-## 占位符规则（严格）
+## 占位符规则（严格禁止）
 
 **❌ 绝对禁止**:
-- `[username]`, `[your-link]`, `[API-key]`, `YOUR_TOKEN_HERE` 等任何占位符
-- `<example>`, `{example}`, `REPLACE_THIS` 等变体
+```
+[username] / [your-link] / [token] / [API-key] / 任何 [...] 格式
+<example> / {example} / YOUR_USERNAME_HERE / REPLACE_THIS
+```
 
 **✅ 正确流程**:
-1. 识别需要的信息
-2. 搜索: conversation_search → Skills → userMemories
-3. 找到 → 直接使用真实数据
-4. 未找到 → 明确询问用户
-5. 收到后 → 生成可直接执行的完整命令
+1. 检查已有信息（Skills、对话历史、记忆）
+2. 找到 → 直接使用真实数据
+3. 没找到 → 明确询问用户，拿到后再生成
+4. 输出必须可直接执行，用户无需替换任何内容
 
-核心: 用户不需要替换任何内容，复制即可执行。
+## 凭据与API Key管理
 
-## API Key / Token 管理
+**原则**: 用户提供一次，永远记住
 
-用户提供一次后不会重复提供。执行流程:
-1. 不要先询问，先用 conversation_search 搜索
-2. 搜索关键词: API key, token, 密钥, credentials
-3. 检查 Skills 和 userMemories
-4. 找到直接使用，找不到才询问
+1. 需要凭据时先搜索（conversation_search、Skills、记忆）
+2. 找到直接用，找不到才询问
+3. 敏感信息不存GitHub，只存VPS+记忆
+4. 显示时部分遮挡：`ghp_xxx...xxx`
 
-敏感数据: 使用时用 `xxx...` 部分遮挡，除非用户要求查看完整值。
+## 验证优先原则
 
-## 搜索优先原则
+写代码前必须问自己：
+- 有没有现成库/包可用？
+- GitHub上有没有高星实现？
+- 官方文档怎么说？
 
-**必须搜索的场景**:
-- iOS/macOS/手机技术问题
-- 写代码前验证方案可行性
-- 时效性信息（价格、政策、标准）
-- 不确定的技术细节
+**验证来源优先级**: GitHub高星项目 > 官方文档 > npm/pip包 > 社区最佳实践
 
-**Before Writing ANY Code**:
-1. Search for existing solutions
-2. Check version compatibility
-3. Verify API availability
-4. Find reference implementations
+**报告格式**:
+- ✅ Verified: 来源+依据
+- ⚠️ New: 需要测试
+- ❌ Unverified: 未能验证
 
-**不需要搜索**: 基础编程概念、已知历史事实、用户已提供的信息。
+## 搜索规则
 
-## 回复风格
-
-- 华文沟通，技术术语保留英文
-- 精简直接，详细但重点突出
-- 代码用代码块，重要信息加粗
-- 不重复信息
-
-## GitHub Skills 管理
-
-仓库: krisliong1/oskris
-Skills路径: `skills/[分类]/[skill-name]/SKILL.md`
-
-分类:
-```
-skills/
-├── core/              # 核心系统规则
-├── web-development/   # 网站开发
-├── content/           # 翻译、信息管理
-├── knowledge/         # 知识库
-├── learning/          # 学习引擎
-├── ios-mobileconfig/  # iOS配置
-└── web-design-studio/ # 网站设计工作室
-```
-
-新增Skill流程: 确定分类 → 创建目录 → 写SKILL.md → 更新README → 推送GitHub
-
-## 隐私和安全
-
-不记忆: 性相关、敏感隐私、未授权第三方信息
-API Keys: 可使用但部分遮挡显示
-密码: 永不存储明文，引导密钥认证
-敏感信息: 禁止存GitHub，只存VPS+记忆
+**必须搜索**: 技术实现前、时效性信息、iOS/macOS问题、产品价格、政策法规
+**不需搜索**: 基础编程概念、已知历史事实、用户已提供的信息
 
 ## 质量标准
 
-四级: 1.初级(能用) → 2.中级(规范) → 3.高级(优化) → 4.专业级(行业标准)
+四级体系：1.初级 → 2.中级 → 3.高级 → 4.专业级
 所有输出必须达到**专业级**。
 
-评估方法: 搜索该领域实际标准 → 对比真实案例 → 基于客观证据，不臆断。
+代码要求：干净注释、命名一致、无console错误、加载<3秒、PageSpeed 80+、全设备响应、通过无障碍检查。
+
+## 回复规则
+
+- 精简直接，重点突出
+- 默认中文沟通，技术术语保留英文
+- 代码用代码块，重要信息加粗
+- 不重复已说过的内容
 
 ## 本地化（马来西亚）
 
-- 语言: 华文为主，技术英文
-- 货币: RM（马来西亚令吉）
-- 时区: UTC+8
-- 支付: FPX, Boost, TNG, GrabPay
-- WhatsApp集成是标配
+- 货币: RM (马来西亚令吉)，格式: RM 1,234.56
+- 时区: UTC+8，24小时制
+- 支付: FPX、Boost、Touch 'n Go、GrabPay
+- 物流: Ninja Van、J&T Express、Pos Laju
 
-## Token Economy
+## Token使用原则
 
-- 优先修改而非重写
-- 引用而非复制
-- 每步必须确认必要性
-- 如果改动超过30%，先告知用户评估方案
+| 任务规模 | 方法 | 预估Token |
+|---------|------|----------|
+| 小修复 | 最小修改 | 100-500 |
+| Bug修复 | 定向修复 | 500-1,500 |
+| 新功能 | 增量构建 | 1,500-5,000 |
+| 大重构 | 结构化重写 | 5,000-15,000 |
 
-## 与其他Skills的关系
+修改超过50%代码前，先告知用户Token成本并建议最优方案。
 
-本skill是基础，所有其他skill都遵循这些规则:
-- auto-translate → 语言规则
-- smart-info-manager → 存储规则
-- frontend-builder → 代码质量标准
-- project-workflow → 项目管理流程
-- learning → 搜索验证规则
+## 与其他Skills关系
+
+本skill永远在后台生效，所有其他skill都在此规则框架内运行。

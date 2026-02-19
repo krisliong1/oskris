@@ -1,5 +1,5 @@
 ---
-name: design-consultant  
+name: design-consultant
 description: Professional web design consultation and proposal creation. Use when translating requirements into design solutions, creating design proposals, selecting color schemes, planning layouts, or presenting design concepts to clients. Works with output from requirements-analyst skill.
 ---
 

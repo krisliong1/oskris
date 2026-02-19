@@ -1,3 +1,8 @@
+---
+name: context-management
+description: 管理长对话的Context Window，监控token用量，在质量下降前主动预警。适用于长对话、多任务、需要跨session保持信息的场景。
+---
+
 # Context Management Skill
 
 ## Trigger

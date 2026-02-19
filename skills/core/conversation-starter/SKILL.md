@@ -1,3 +1,8 @@
+---
+name: conversation-starter
+description: 每次新对话开始时自动触发，读取Skills、敏感配置、项目记忆并报告当前状态。确保对话有完整上下文。
+---
+
 # Conversation Starter Skill
 
 ## 触发条件

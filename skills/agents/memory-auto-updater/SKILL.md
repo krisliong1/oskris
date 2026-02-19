@@ -1,5 +1,5 @@
 ---
-name: memory-auto-updater  
+name: memory-auto-updater
 description: 自动更新 Claude 的记忆。任何提到 "GitHub", "记忆", "memory" 的对话都会触发记忆更新,确保永远不会忘记重要信息。
 ---
 

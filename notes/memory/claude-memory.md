@@ -7,7 +7,7 @@
 2. VPS: 76.13.191.45, 密码Qwer-1234Aa, Ubuntu 25.10, 2核8GB, Malaysia
 3. Hostinger API已配置(token存Claude记忆)
 4. 域名: oskris.com(到期2027)
-5. 用户邮箱: oskrismy@gmail.com / official@oskris.com
+5. 用户邮箱: oskrismy@gmail.com / krisliong11@gmail.com / official@oskris.com
 
 ## 工作规则
 6. 所有价格用RM(马来西亚令吉)
@@ -19,8 +19,8 @@
 12. 文件已存在用str_replace, 不要盲目创建
 
 ## 自动存储
-13. 创建/修改文件后→1)上传GitHub 2)Desktop模式同时写入Mac本地 3)claude.ai模式提醒去Desktop同步
-14. 每步告诉用户同步了哪些文件到哪里
+13. 创建/修改/创建新project/创建任何文件后→1)上传GitHub 2)Desktop模式同时写入Mac本地 3)claude.ai模式提醒去Desktop同步
+14. 每步告诉用户同步了哪些文件到哪里(需提醒用户已上传或修改的文件)
 15. 敏感信息禁止存GitHub, 只存VPS+记忆
 16. 记忆更新后同步此文件: notes/memory/claude-memory.md
 
@@ -46,7 +46,14 @@
 
 ## 当前项目
 26. websitedesign.oskris.com - 网站设计服务
-27. 定价: RM 1,999 / 4,999 / 9,999
+27. 定价: 用户不满意旧定价, 待用户自己确定新价格
+
+## Telegram Bot
+37. oskristelegramagentbot 是Claude制作的文件里的telegrambot(非主要通讯bot)
+38. Bot Token: 存在Claude记忆中
+
+## iOS配置
+39. mobileconfig 组织名: oskris.com
 
 ## 文件路径
 28. /home/claude - 临时工作

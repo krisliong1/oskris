@@ -19,8 +19,8 @@ Telegram (手机/桌面) → Telegram Bot API → Node: bot.py
 
 ## 基础设施
 
-- VPS: YOUR_VPS_IP (Ubuntu 25.10, 2核8GB, Malaysia, Hostinger)
-- GitHub: krisliong1/oskris, token: ***REDACTED***
+- VPS: 76.13.191.45 (Ubuntu 25.10, 2核8GB, Malaysia, Hostinger)
+- GitHub: krisliong1/oskris, token: 存于.env
 - 代码位置: GitHub `projects/oskris-agent/`
 - VPS部署路径: `/opt/oskris-agent/`
 - 域名: oskris.com (到期2027)
@@ -109,7 +109,7 @@ oskris-agent/
 
 ```bash
 # SSH到VPS
-ssh root@YOUR_VPS_IP
+ssh root@76.13.191.45
 
 # 服务管理
 systemctl start oskris-agent

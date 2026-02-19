@@ -73,7 +73,7 @@ Mac上需要开启:
 				<key>UUID</key>
 				<string>AA111111-1111-1111-1111-111111111111</string>
 				<key>WFTextActionText</key>
-				<string>Mac-Mini.local</string>
+				<string>oskrismacmini.local</string>
 				<key>CustomOutputName</key>
 				<string>Mac Host</string>
 			</dict>
@@ -103,7 +103,7 @@ Mac上需要开启:
 				<key>UUID</key>
 				<string>AA333333-3333-3333-3333-333333333333</string>
 				<key>WFTextActionText</key>
-				<string>你的Mac密码</string>
+				<string>1234</string>
 				<key>CustomOutputName</key>
 				<string>Mac Password</string>
 			</dict>

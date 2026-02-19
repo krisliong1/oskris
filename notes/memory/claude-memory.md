@@ -1,6 +1,6 @@
 # Claude 记忆系统
 
-最后更新: 2026-02-16 (v2 精简合并版)
+最后更新: 2026-02-19
 
 ## 核心配置
 1. GitHub: krisliong1/oskris, 只推main分支, /tmp克隆操作
@@ -19,10 +19,17 @@
 12. 文件已存在用str_replace, 不要盲目创建
 
 ## 自动存储
-13. Claude修改文件后自动: 上传GitHub + Hostinger API同步VPS
-14. 每步告诉用户新建/更新了什么
+13. 创建/修改文件后→1)上传GitHub 2)Desktop模式同时写入Mac本地 3)claude.ai模式提醒去Desktop同步
+14. 每步告诉用户同步了哪些文件到哪里
 15. 敏感信息禁止存GitHub, 只存VPS+记忆
 16. 记忆更新后同步此文件: notes/memory/claude-memory.md
+
+## Mac Mini M4 Desktop同步
+32. Claude Desktop已配置MCP filesystem, 可读写: /Users/oskris/Desktop, Documents, Downloads
+33. 检测到Desktop模式(有filesystem工具)→自动开启数据同步: 文件直接写入Mac+上传GitHub
+34. claude.ai模式→上传GitHub, 告知用户去Desktop同步
+35. Node.js路径: /Users/oskris/.nvm/versions/node/v20.20.0
+36. 已安装MCP: filesystem, github, hostinger-api-mcp
 
 ## Context Window 监控(核心!)
 17. 研究证实: 20-40%就开始降级, 不是100%

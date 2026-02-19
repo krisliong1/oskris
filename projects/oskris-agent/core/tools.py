@@ -425,6 +425,16 @@ async def execute_github_push(file_path: str, content: str, commit_message: str,
 
         # === EXISTING FILE: protection kicks in ===
 
+        # Exempt paths: these can be auto-updated without confirmation
+        EXEMPT_PREFIXES = ("logs/", "backups/", "notes/", "index/")
+        is_exempt = any(file_path.startswith(p) for p in EXEMPT_PREFIXES)
+
+        if is_exempt:
+            result = await _github_put_file(file_path, content, commit_message, sha)
+            if "✅" in result:
+                await _github_log_change(file_path, "AUTO-MODIFY", commit_message)
+            return result
+
         # Check if content actually changed
         if old_content.strip() == content.strip():
             return "ℹ️ No changes detected. File content is identical."

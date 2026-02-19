@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>WFWorkflowClientVersion</key>
+	<string>2802.0.4</string>
+	<key>WFWorkflowHasOutputFallback</key>
+	<false/>
+	<key>WFWorkflowHasShortcutInputVariables</key>
+	<false/>
+	<key>WFWorkflowIcon</key>
+	<dict>
+		<key>WFWorkflowIconGlyphNumber</key>
+		<integer>61515</integer>
+		<key>WFWorkflowIconStartColor</key>
+		<integer>463140863</integer>
+	</dict>
+	<key>WFWorkflowImportQuestions</key>
+	<array/>
+	<key>WFWorkflowInputContentItemClasses</key>
+	<array>
+		<string>WFStringContentItem</string>
+	</array>
+	<key>WFWorkflowMinimumClientVersion</key>
+	<integer>1113</integer>
+	<key>WFWorkflowMinimumClientVersionString</key>
+	<string>900</string>
+	<key>WFWorkflowName</key>
+	<string>连接 Mac Mini</string>
+	<key>WFWorkflowNoInputBehavior</key>
+	<dict>
+		<key>Name</key>
+		<string>WFWorkflowNoInputBehavior</string>
+		<key>Parameters</key>
+		<dict/>
+	</dict>
+	<key>WFWorkflowTypes</key>
+	<array>
+		<string>NCWidget</string>
+		<string>WatchKit</string>
+	</array>
+	<key>WFWorkflowActions</key>
+	<array>
+
+		<!-- ========== COMMENT: 配置说明 ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.comment</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>WFCommentActionText</key>
+				<string>⚙️ 连接Mac Mini快捷指令
+by Oskris
+
+修改下面3个Text的值来配置:
+1. Mac的本地IP或主机名
+2. Mac用户名
+3. Mac密码
+
+Mac上需要开启:
+系统设置 → 通用 → 共享 → 远程登录 (SSH)
+系统设置 → 通用 → 共享 → 屏幕共享 (VNC)</string>
+			</dict>
+		</dict>
+
+		<!-- ========== Mac Host ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.gettext</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>2515E156-F0B9-4C0B-B5B7-E8E77B4D4A56</string>
+				<key>WFTextActionText</key>
+				<string>Mac-Mini-M4.local</string>
+				<key>CustomOutputName</key>
+				<string>Mac Host</string>
+			</dict>
+		</dict>
+
+		<!-- ========== Mac User ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.gettext</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>66F04073-A955-43D7-B556-B1A31B907D41</string>
+				<key>WFTextActionText</key>
+				<string>oskris</string>
+				<key>CustomOutputName</key>
+				<string>Mac User</string>
+			</dict>
+		</dict>
+
+		<!-- ========== Mac Password ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.gettext</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>92C6D007-6138-4757-B4DD-2CCA2015EACF</string>
+				<key>WFTextActionText</key>
+				<string>你的Mac密码</string>
+				<key>CustomOutputName</key>
+				<string>Mac Password</string>
+			</dict>
+		</dict>
+
+		<!-- ========== MENU START ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.choosefrommenu</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>CDE12EF5-8728-4C32-8556-50D7E0A3D940</string>
+				<key>WFControlFlowMode</key>
+				<integer>0</integer>
+				<key>WFMenuPrompt</key>
+				<string>连接 Mac Mini M4</string>
+				<key>WFMenuItems</key>
+				<array>
+					<string>🖥 屏幕共享 (VNC)</string>
+					<string>💻 SSH 执行命令</string>
+					<string>📊 查看Mac状态</string>
+					<string>😴 让Mac睡眠</string>
+					<string>🔊 唤醒Mac</string>
+				</array>
+			</dict>
+		</dict>
+
+		<!-- ========== OPTION 1: Screen Share (VNC) ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.choosefrommenu</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>CDE12EF5-8728-4C32-8556-50D7E0A3D940</string>
+				<key>WFControlFlowMode</key>
+				<integer>1</integer>
+				<key>WFMenuItemTitle</key>
+				<string>🖥 屏幕共享 (VNC)</string>
+			</dict>
+		</dict>
+
+		<!-- Open VNC URL -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.url</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>B1234567-AAAA-BBBB-CCCC-111111111111</string>
+				<key>WFURLActionURL</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{6, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac Host</string>
+								<key>OutputUUID</key>
+								<string>2515E156-F0B9-4C0B-B5B7-E8E77B4D4A56</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>vnc://￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.openurl</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict/>
+		</dict>
+
+		<!-- ========== OPTION 2: SSH Execute Command ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.choosefrommenu</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>CDE12EF5-8728-4C32-8556-50D7E0A3D940</string>
+				<key>WFControlFlowMode</key>
+				<integer>1</integer>
+				<key>WFMenuItemTitle</key>
+				<string>💻 SSH 执行命令</string>
+			</dict>
+		</dict>
+
+		<!-- Ask for command -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.ask</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>DDDDDDDD-1111-2222-3333-444444444444</string>
+				<key>WFAskActionPrompt</key>
+				<string>输入要在Mac上执行的命令:</string>
+				<key>WFAskActionDefaultAnswer</key>
+				<string>ls ~/Desktop</string>
+				<key>WFInputType</key>
+				<string>Text</string>
+			</dict>
+		</dict>
+
+		<!-- Run SSH with asked command -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.runsshscript</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>A9AA6431-9BA2-4782-B8A2-70B833F81444</string>
+				<key>WFSSHHost</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac Host</string>
+								<key>OutputUUID</key>
+								<string>2515E156-F0B9-4C0B-B5B7-E8E77B4D4A56</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHPort</key>
+				<string>22</string>
+				<key>WFSSHUser</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac User</string>
+								<key>OutputUUID</key>
+								<string>66F04073-A955-43D7-B556-B1A31B907D41</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHPassword</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac Password</string>
+								<key>OutputUUID</key>
+								<string>92C6D007-6138-4757-B4DD-2CCA2015EACF</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHAuthenticationType</key>
+				<string>Password</string>
+				<key>WFSSHScript</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Provided Input</string>
+								<key>OutputUUID</key>
+								<string>DDDDDDDD-1111-2222-3333-444444444444</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+			</dict>
+		</dict>
+
+		<!-- Show SSH result -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.showresult</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>Text</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Shell Script Result</string>
+								<key>OutputUUID</key>
+								<string>A9AA6431-9BA2-4782-B8A2-70B833F81444</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+			</dict>
+		</dict>
+
+		<!-- ========== OPTION 3: Mac Status ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.choosefrommenu</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>CDE12EF5-8728-4C32-8556-50D7E0A3D940</string>
+				<key>WFControlFlowMode</key>
+				<integer>1</integer>
+				<key>WFMenuItemTitle</key>
+				<string>📊 查看Mac状态</string>
+			</dict>
+		</dict>
+
+		<!-- Run SSH: system info -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.runsshscript</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>EEEEEEEE-1111-2222-3333-444444444444</string>
+				<key>WFSSHHost</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac Host</string>
+								<key>OutputUUID</key>
+								<string>2515E156-F0B9-4C0B-B5B7-E8E77B4D4A56</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHPort</key>
+				<string>22</string>
+				<key>WFSSHUser</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac User</string>
+								<key>OutputUUID</key>
+								<string>66F04073-A955-43D7-B556-B1A31B907D41</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHPassword</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac Password</string>
+								<key>OutputUUID</key>
+								<string>92C6D007-6138-4757-B4DD-2CCA2015EACF</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHAuthenticationType</key>
+				<string>Password</string>
+				<key>WFSSHScript</key>
+				<string>echo "🖥 $(sw_vers -productName) $(sw_vers -productVersion)"
+echo "⏱ 运行时间: $(uptime | sed 's/.*up //' | sed 's/,.*//')"
+echo "💾 内存: $(vm_stat | awk '/Pages active/ {printf "%.0f MB", $3*4096/1048576}')"
+echo "💿 磁盘: $(df -h / | awk 'NR==2 {print $3"/"$2" 已用"}')"
+echo "🔋 CPU: $(sysctl -n hw.ncpu) 核心"
+echo "📡 IP: $(ipconfig getifaddr en0 2>/dev/null || echo 'N/A')"</string>
+			</dict>
+		</dict>
+
+		<!-- Show status result -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.showresult</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>Text</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Shell Script Result</string>
+								<key>OutputUUID</key>
+								<string>EEEEEEEE-1111-2222-3333-444444444444</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+			</dict>
+		</dict>
+
+		<!-- ========== OPTION 4: Sleep Mac ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.choosefrommenu</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>CDE12EF5-8728-4C32-8556-50D7E0A3D940</string>
+				<key>WFControlFlowMode</key>
+				<integer>1</integer>
+				<key>WFMenuItemTitle</key>
+				<string>😴 让Mac睡眠</string>
+			</dict>
+		</dict>
+
+		<!-- Run SSH: sleep -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.runsshscript</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>UUID</key>
+				<string>FFFFFFFF-1111-2222-3333-444444444444</string>
+				<key>WFSSHHost</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac Host</string>
+								<key>OutputUUID</key>
+								<string>2515E156-F0B9-4C0B-B5B7-E8E77B4D4A56</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHPort</key>
+				<string>22</string>
+				<key>WFSSHUser</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac User</string>
+								<key>OutputUUID</key>
+								<string>66F04073-A955-43D7-B556-B1A31B907D41</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHPassword</key>
+				<dict>
+					<key>Value</key>
+					<dict>
+						<key>attachmentsByRange</key>
+						<dict>
+							<key>{0, 1}</key>
+							<dict>
+								<key>OutputName</key>
+								<string>Mac Password</string>
+								<key>OutputUUID</key>
+								<string>92C6D007-6138-4757-B4DD-2CCA2015EACF</string>
+								<key>Type</key>
+								<string>ActionOutput</string>
+							</dict>
+						</dict>
+						<key>string</key>
+						<string>￼</string>
+					</dict>
+					<key>WFSerializationType</key>
+					<string>WFTextTokenString</string>
+				</dict>
+				<key>WFSSHAuthenticationType</key>
+				<string>Password</string>
+				<key>WFSSHScript</key>
+				<string>osascript -e 'tell application "System Events" to sleep'</string>
+			</dict>
+		</dict>
+
+		<!-- Sleep confirmation -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.notification</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>WFNotificationActionTitle</key>
+				<string>Mac Mini 已进入睡眠 😴</string>
+				<key>WFNotificationActionBody</key>
+				<string>Mac Mini M4 已成功进入睡眠模式</string>
+			</dict>
+		</dict>
+
+		<!-- ========== OPTION 5: Wake Mac ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.choosefrommenu</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>CDE12EF5-8728-4C32-8556-50D7E0A3D940</string>
+				<key>WFControlFlowMode</key>
+				<integer>1</integer>
+				<key>WFMenuItemTitle</key>
+				<string>🔊 唤醒Mac</string>
+			</dict>
+		</dict>
+
+		<!-- Wake: Alert explanation -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.alert</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>WFAlertActionTitle</key>
+				<string>唤醒Mac Mini</string>
+				<key>WFAlertActionMessage</key>
+				<string>唤醒需要Mac的MAC地址。
+请在Mac开机时到:
+系统设置 → 网络 → Wi-Fi → 详细信息 → 硬件
+记下MAC地址，然后修改这个快捷指令里的地址。
+
+目前会尝试通过SSH唤醒（Mac需要已在浅睡眠状态）。</string>
+				<key>WFAlertActionCancelButtonShown</key>
+				<false/>
+			</dict>
+		</dict>
+
+		<!-- ========== MENU END ========== -->
+		<dict>
+			<key>WFWorkflowActionIdentifier</key>
+			<string>is.workflow.actions.choosefrommenu</string>
+			<key>WFWorkflowActionParameters</key>
+			<dict>
+				<key>GroupingIdentifier</key>
+				<string>CDE12EF5-8728-4C32-8556-50D7E0A3D940</string>
+				<key>WFControlFlowMode</key>
+				<integer>2</integer>
+			</dict>
+		</dict>
+
+	</array>
+</dict>
+</plist>

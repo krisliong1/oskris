@@ -7,7 +7,7 @@
 2. VPS: 76.13.191.45, 密码Qwer-1234Aa, Ubuntu 25.10, 2核8GB, Malaysia
 3. Hostinger API已配置(token存Claude记忆)
 4. 域名: oskris.com(到期2027)
-5. 用户邮箱: oskrismy@gmail.com / krisliong11@gmail.com / official@oskris.com
+5. 用户邮箱: oskrismy@gmail.com / official@oskris.com
 
 ## 工作规则
 6. 所有价格用RM(马来西亚令吉)
@@ -19,8 +19,8 @@
 12. 文件已存在用str_replace, 不要盲目创建
 
 ## 自动存储
-13. 创建/修改/创建新project/创建任何文件后→1)上传GitHub 2)Desktop模式同时写入Mac本地 3)claude.ai模式提醒去Desktop同步
-14. 每步告诉用户同步了哪些文件到哪里(需提醒用户已上传或修改的文件)
+13. 创建/修改文件后→1)上传GitHub 2)Desktop模式同时写入Mac本地 3)claude.ai模式提醒去Desktop同步
+14. 每步告诉用户同步了哪些文件到哪里
 15. 敏感信息禁止存GitHub, 只存VPS+记忆
 16. 记忆更新后同步此文件: notes/memory/claude-memory.md
 
@@ -38,25 +38,19 @@
 20. 阈值: 30%警告, 40%强烈建议开新对话, 50%必须停止
 21. 来源: Chroma Research(18个LLM测试), Stanford Lost in the Middle
 
-## Skills分类
-22. core/ - 核心系统(work-rules, core-work-rules等)
-23. web-development/ - 网站开发(project-workflow等)
-24. content/ - 翻译(auto-translate, smart-info-manager)
-25. product/ - 产品(product-self-knowledge, app-recommendations)
+## Skills系统 (2026-02-19更新)
+22. Claude.ai加载的skills必须≤500行
+23. work-rules已合并core-work-rules, 不再需要两个
+24. frontend-design和product-self-knowledge是系统内置, 不需要用户版
+25. GitHub skills分类: core/, web-development/, content/, knowledge/, business-workflow/, design-creative/, development-tools/
+26. 12个GitHub skills与Anthropic内置重复(documents/, design-creative/部分), 可清理
 
 ## 当前项目
-26. websitedesign.oskris.com - 网站设计服务
-27. 定价: 用户不满意旧定价, 待用户自己确定新价格
-
-## Telegram Bot
-37. oskristelegramagentbot 是Claude制作的文件里的telegrambot(非主要通讯bot)
-38. Bot Token: 存在Claude记忆中
-
-## iOS配置
-39. mobileconfig 组织名: oskris.com
+27. websitedesign.oskris.com - 网站设计服务, 待部署
+28. 定价: 待用户确定新方案
 
 ## 文件路径
-28. /home/claude - 临时工作
-29. /mnt/user-data/outputs - 输出给用户
-30. /mnt/skills/user/ - 读取Skills
-31. /tmp - 临时目录(克隆GitHub用)
+29. /home/claude - 临时工作
+30. /mnt/user-data/outputs - 输出给用户
+31. /mnt/skills/user/ - 读取Skills
+32. /tmp - 临时目录(克隆GitHub用)

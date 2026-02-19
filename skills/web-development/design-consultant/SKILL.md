@@ -1,138 +1,554 @@
 ---
-name: design-consultant
+name: design-consultant  
 description: Professional web design consultation and proposal creation. Use when translating requirements into design solutions, creating design proposals, selecting color schemes, planning layouts, or presenting design concepts to clients. Works with output from requirements-analyst skill.
 ---
 
 # Design Consultant Skill
 
-创建专业设计方案，将业务需求转化为视觉解决方案。
+This skill helps you create professional design proposals and visual concepts based on client requirements. It bridges business needs with aesthetic solutions.
 
-## 使用时机
+## When to Use This Skill
 
-- 需求收集完成后(来自requirements-analyst)
-- 创建设计提案给客户
-- 选择视觉风格和配色
-- 规划网站布局
-- 设计评审和决策
+- After requirements are gathered (from requirements-analyst skill)
+- Creating design proposals for clients
+- Selecting appropriate visual styles
+- Planning website layouts and structure
+- Presenting design options to clients
+- Making design decisions during development
 
-## 输入要求
+## Input Requirements
 
-- 完整需求文档
-- 客户业务类型和目标受众
-- 预算约束
-- 品牌资产(如有logo/品牌色)
+This skill works best when you have:
+- Completed requirements document
+- Understanding of client's business
+- Knowledge of target audience
+- Budget constraints
+- Brand assets (if available)
 
-## 风格分析框架
+## Core Design Framework
 
-根据客户业务类型推荐设计风格:
+### 1. Style Analysis (风格分析)
 
-| 业务类型 | 风格 | 特点 |
-|---------|------|------|
-| 电商/游戏 | 现代科技感 | 深色主题+霓虹强调色,高对比CTA,网格布局 |
-| 企业/专业服务 | 简洁专业 | 信任元素,蓝灰配色,清晰层级 |
-| 创意/作品集 | 大胆独特 | 展示为主,艺术字体,大留白,交互元素 |
-| 本地零售 | 实用功能型 | 清晰导航,产品为主,移动优先,WhatsApp集成 |
-| 餐饮/服务 | 温暖亲切 | 暖色调,大图片,简单预订流程 |
+Based on client's business type, recommend appropriate design styles:
 
-## 配色方案
+**E-commerce / Gaming**:
+- Modern, tech-forward aesthetics
+- Dark themes with neon accents
+- High contrast for CTAs
+- Grid-based product layouts
+- Fast-loading, image-optimized
+- Example: GameShop.my style
 
-### 选择流程
-1. 分析现有品牌色(如有)
-2. 考虑行业标准和文化含义
-3. 测试无障碍(WCAG对比度≥4.5:1)
-4. 创建明暗主题变体
+**Corporate / Professional Services**:
+- Clean, minimal design
+- Trust-building elements
+- Professional color schemes (blues, grays)
+- Clear hierarchy
+- Certificate/award displays
 
-### 推荐配色(按类型)
+**Creative / Portfolio**:
+- Bold, unique layouts
+- Showcase-focused design
+- Artistic typography
+- Generous white space
+- Interactive elements
 
-**科技/游戏**: Primary #0A192F, Accent #00D1FF, CTA #F97316
-**专业服务**: Primary #1E40AF, Secondary #059669, Background #F8FAFC
-**创意**: Primary #7C3AED, Accent #EC4899, Background #FAFAFA
-**本地零售**: Primary #DC2626, Secondary #F59E0B, Background #FFFFFF
+**Local Retail / Hardware**:
+- Practical, functional design
+- Clear navigation
+- Product-focused layout
+- Mobile-friendly (Malaysian users browse on phones)
+- WhatsApp integration
 
-### 马来西亚文化配色
-- 红色=吉祥(华人市场)
-- 金色=高端
-- 绿色=伊斯兰意义
-- 避免全白(丧事联想)
+### 2. Color Scheme Selection (配色方案)
 
-## 配色架构模板
+#### Process:
+1. **Analyze brand colors** (if existing logo/brand)
+2. **Consider industry standards**
+3. **Test for accessibility** (WCAG compliance)
+4. **Create palette variants** (light/dark themes)
 
+#### Recommended Palettes by Industry:
+
+**Gaming/Tech**:
 ```
-Primary   — 品牌核心色(CTA、重要元素)
-Secondary — 支撑色(次要按钮、信息链接)
-Accent    — 点缀色(吸引注意力)
-Background— 页面底色、卡片背景
-Surface   — 输入框、卡片
-Text      — 标题色 + 正文色 + 次要文字色
-Semantic  — 成功(绿)/警告(黄)/错误(红)/信息(蓝)
-```
-
-## 字体选择
-
-### 推荐组合
-
-| 用途 | 标题字体 | 正文字体 |
-|------|---------|---------|
-| 专业 | Montserrat / Poppins | Open Sans / Inter |
-| 创意 | Playfair Display / DM Serif | Lora / Source Serif |
-| 科技 | Space Grotesk / JetBrains Mono | DM Sans / Manrope |
-| 本地化 | Noto Sans SC(中文) | Noto Sans(多语言) |
-
-规则: 最多2种字体，标题和正文形成对比。
-
-## 布局结构
-
-### 7大必备板块
-1. **Header** — Logo + 导航 + CTA按钮
-2. **Hero Section** — 标题 + 副标题 + CTA + 高质量图片
-3. **Pain Points** — 客户面临的3-4个核心问题
-4. **Services/Solution** — 服务如何解决问题
-5. **Social Proof** — 评价/案例/合作品牌
-6. **About** — 简短品牌故事
-7. **CTA + Footer** — 最终行动号召 + 联系方式
-
-### 响应式断点
-- Mobile: < 640px (单列)
-- Tablet: 640-1024px (双列)
-- Desktop: > 1024px (多列)
-
-## 设计提案模板
-
-向客户展示时包含:
-
-1. **设计概念**: 整体风格方向和理由
-2. **配色方案**: 带色块展示的完整配色
-3. **字体方案**: 标题和正文字体预览
-4. **布局结构**: 线框图展示页面结构
-5. **关键设计元素**: CTA按钮、卡片、表单等组件
-6. **响应式行为**: 不同设备的适配说明
-7. **时间线**: 设计→开发→上线预估
-8. **修改政策**: 含X次免费修改
-
-## CTA设计规则
-
-- 颜色: 与背景强对比(红/橙=紧迫,绿=行动,蓝=信任)
-- 位置: Above the fold必须有一个,页尾必须有一个
-- 文案: 动作导向("立即咨询"不是"提交"),第一人称
-- 大小: 字号=正文的2倍,不过大(banner blindness)
-- 周围留白让CTA呼吸
-- 每页一个主CTA
-
-## 整合其他Skills
-
-```
-requirements-analyst → 输出需求文档
-  ↓
-design-consultant (本skill) → 输出设计方案+品牌系统
-  ↓
-frontend-builder → 将设计转化为代码
+Primary: #0A192F (Deep Space Blue)
+Secondary: #00D1FF (Neon Blue)
+Accent: #F97316 (Energy Orange)
+Background: #111827 (Dark)
+Text: #FFFFFF, #E5E7EB
 ```
 
-## 质量检查
+**Professional/Corporate**:
+```
+Primary: #1E40AF (Professional Blue)
+Secondary: #6B7280 (Neutral Gray)
+Accent: #10B981 (Success Green)
+Background: #F9FAFB (Light)
+Text: #111827, #6B7280
+```
 
-- [ ] 配色通过WCAG 2.2 AA对比度测试
-- [ ] 字体在所有设备可读
-- [ ] 布局Mobile-first响应式
-- [ ] CTA位置和文案清晰
-- [ ] 设计风格与客户业务匹配
-- [ ] 马来西亚文化适配
+**Creative/Modern**:
+```
+Primary: #7C3AED (Vibrant Purple)
+Secondary: #EC4899 (Pink)
+Accent: #F59E0B (Amber)
+Background: #FFFFFF
+Text: #1F2937
+```
+
+**Local/Traditional**:
+```
+Primary: #DC2626 (Red - Malaysian preference)
+Secondary: #059669 (Green)
+Accent: #F59E0B (Gold)
+Background: #FFFFFF
+Text: #1F2937
+```
+
+### 3. Typography Selection (字体选择)
+
+#### Principles:
+- Maximum 2-3 font families
+- Pair display font with readable body font
+- Consider multilingual support (English + Chinese/Malay)
+- Web-safe fonts or Google Fonts
+
+#### Recommended Pairings:
+
+**Modern/Tech**:
+- Headers: Orbitron / Space Grotesk
+- Body: Inter / Roboto
+
+**Professional**:
+- Headers: Playfair Display / Merriweather
+- Body: Open Sans / Lato
+
+**Friendly/Approachable**:
+- Headers: Poppins / Nunito
+- Body: Mukta / Noto Sans
+
+**Malaysian Multi-lingual**:
+- Use: Noto Sans (supports Chinese characters)
+- Or: Roboto + Noto Sans CJK
+
+### 4. Layout Planning (布局规划)
+
+#### Standard Page Layouts:
+
+**Homepage Structure**:
+```
+1. Hero Section
+   - Headline + Subheadline
+   - CTA button
+   - Hero image/video
+
+2. Trust Indicators
+   - Years in business
+   - Certifications
+   - Customer count
+
+3. Services/Products Overview
+   - 3-4 key offerings
+   - With icons/images
+
+4. Social Proof
+   - Testimonials
+   - Case studies
+   - Logos of clients
+
+5. Call-to-Action
+   - Contact form
+   - WhatsApp button
+   - Phone number
+
+6. Footer
+   - Site map
+   - Contact info
+   - Social media
+```
+
+**Product Page (E-commerce)**:
+```
+1. Product Images (gallery)
+2. Product name + price
+3. Description
+4. Specifications
+5. Add to cart button
+6. Related products
+7. Reviews
+```
+
+**About Page**:
+```
+1. Company story
+2. Team photos
+3. Values/mission
+4. Timeline
+5. Certifications
+```
+
+### 5. Component Design (组件设计)
+
+#### Essential Components:
+
+**Navigation Bar**:
+- Logo (left)
+- Main menu (center/right)
+- Search (if e-commerce)
+- Shopping cart icon (if e-commerce)
+- Language switcher (if multilingual)
+- Mobile hamburger menu
+
+**Hero Section Options**:
+- Full-width image + text overlay
+- Split (image left, text right)
+- Video background
+- Carousel/slider
+- Illustrated
+
+**Product Cards**:
+```
+- Product image
+- Product name
+- Price (with/without discount)
+- Quick view button
+- Add to cart button
+- Rating stars
+- Badge (NEW / SALE / OUT OF STOCK)
+```
+
+**Contact Forms**:
+```
+Fields:
+- Name (required)
+- Email (required)
+- Phone (required)
+- Subject (optional)
+- Message (required)
+- Submit button
+
+Include:
+- WhatsApp quick contact
+- Phone click-to-call
+- Business hours display
+```
+
+**Footer Design**:
+```
+Columns:
+1. About + Logo
+2. Quick Links
+3. Services
+4. Contact Info
+
+Bottom Bar:
+- Copyright
+- Privacy Policy
+- Terms
+- Payment methods icons
+```
+
+### 6. Mobile-First Considerations
+
+**Malaysian Market Insights**:
+- 70%+ users browse on mobile
+- Mobile speed is critical
+- WhatsApp integration essential
+- Touch-friendly buttons (min 44x44px)
+- Simplified mobile navigation
+
+**Mobile Optimizations**:
+- Single column layouts
+- Larger touch targets
+- Sticky CTA buttons
+- Lazy-load images
+- Compressed assets
+- AMP pages (optional)
+
+### 7. Cultural & Local Adaptations
+
+**For Malaysian Clients**:
+
+**Color Psychology**:
+- Red: Popular, associated with prosperity
+- Gold: Premium, luxury
+- Green: Islamic significance, growth
+- Avoid: Excessive black (funeral associations)
+
+**Imagery**:
+- Reflect Malaysian diversity
+- Include multiple ethnicities
+- Local landmarks (if relevant)
+- Avoid culturally insensitive images
+
+**Language Considerations**:
+- Offer BM / EN / CN options
+- Use proper translations (not machine)
+- Right-to-left not needed (Arabic not common)
+
+**Payment Icons**:
+- Display FPX, Boost, TNG, GrabPay
+- Credit card logos
+- "Secure Payment" badges
+
+## Design Proposal Template
+
+Create proposals in this format:
+
+```markdown
+# Design Proposal
+**Project**: [Client Name] Website  
+**Date**: [Date]  
+**Prepared by**: Oskris Web Development
+
+## 1. Design Concept Overview
+
+[Brief description of the overall design direction]
+
+## 2. Visual Style
+
+**Design Mood**: [Modern / Professional / Creative / Traditional]
+
+**Key Characteristics**:
+- [Characteristic 1]
+- [Characteristic 2]
+- [Characteristic 3]
+
+**Inspiration Sources**:
+- [Reference website 1]
+- [Reference website 2]
+
+## 3. Color Palette
+
+**Primary Color**: [Hex code] - [Usage]
+**Secondary Color**: [Hex code] - [Usage]
+**Accent Color**: [Hex code] - [Usage]
+**Background**: [Hex code]
+**Text Colors**: [Hex codes]
+
+[Include color swatch visual if possible]
+
+## 4. Typography
+
+**Headings**: [Font name]
+- H1: [Size]px, [Weight]
+- H2: [Size]px, [Weight]
+- H3: [Size]px, [Weight]
+
+**Body Text**: [Font name]
+- Regular: [Size]px
+- Line height: [Value]
+
+**Special Elements**: [Font for buttons, labels, etc.]
+
+## 5. Layout Structure
+
+### Homepage:
+- Hero: [Description]
+- Section 1: [Content type]
+- Section 2: [Content type]
+- Section 3: [Content type]
+- Footer
+
+### Product/Service Pages:
+[Layout description]
+
+### About/Contact Pages:
+[Layout description]
+
+## 6. Key Design Elements
+
+**Navigation**:
+- [Style description]
+- [Mobile behavior]
+
+**Buttons**:
+- Primary CTA: [Style]
+- Secondary actions: [Style]
+
+**Forms**:
+- [Style description]
+
+**Icons**:
+- [Icon style - line / filled / custom]
+
+## 7. Responsive Behavior
+
+**Desktop (1280px+)**: [Description]
+**Tablet (768-1279px)**: [Description]
+**Mobile (<768px)**: [Description]
+
+## 8. Special Features
+
+- [Feature 1]
+- [Feature 2]
+- [Feature 3]
+
+## 9. Design Deliverables
+
+**Phase 1 - Wireframes**:
+- Homepage wireframe
+- Inner page wireframes
+- Mobile wireframes
+
+**Phase 2 - Mockups**:
+- Homepage design (desktop + mobile)
+- 2-3 inner pages
+- Component library
+
+**Phase 3 - Assets**:
+- Logo (if designing new)
+- Icons
+- Illustrations (if any)
+- Stock photos selection
+
+## 10. Timeline
+
+- Wireframes delivery: [Date]
+- Design mockups: [Date]
+- Revisions completed: [Date]
+- Final design approval: [Date]
+
+## 11. Revision Policy
+
+- Included: [Number] rounds of revisions
+- Additional revisions: RM [Amount] per round
+
+## 12. Next Steps
+
+1. Review and approve this proposal
+2. Provide feedback on style direction
+3. Proceed to wireframe phase
+```
+
+## Design Decision Framework
+
+When making design choices, ask:
+
+1. **Does it serve the user goal?**
+   - Easy to find information?
+   - Clear call-to-action?
+   - Reduces friction?
+
+2. **Does it reflect the brand?**
+   - Matches brand personality?
+   - Consistent with existing materials?
+   - Appeals to target audience?
+
+3. **Is it technically feasible?**
+   - Can be built within budget?
+   - Will load quickly?
+   - Works on all devices?
+
+4. **Is it accessible?**
+   - Color contrast ratio ≥ 4.5:1
+   - Text is readable
+   - Works with screen readers
+   - Keyboard navigable
+
+5. **Is it maintainable?**
+   - Client can update content?
+   - Design system is documented?
+   - Scales with growth?
+
+## Common Design Challenges & Solutions
+
+### Challenge 1: Client wants "everything above the fold"
+
+**Solution**:
+- Explain user scroll behavior (they do scroll!)
+- Prioritize most important content
+- Use visual hierarchy to guide attention
+- Progressive disclosure strategy
+
+### Challenge 2: "Make the logo bigger"
+
+**Solution**:
+- Explain balance and visual hierarchy
+- Show examples of professional sites
+- A/B test if needed
+- Compromise: prominent placement vs size
+
+### Challenge 3: Too many colors/fonts
+
+**Solution**:
+- Educate on brand consistency
+- Show examples of cohesive designs
+- Limit palette to 3-4 colors
+- Maximum 2 font families
+
+### Challenge 4: Client provides low-quality images
+
+**Solution**:
+- Explain image quality importance
+- Offer photography service (+ RM fee)
+- Source stock photos
+- Use illustrations as alternative
+
+### Challenge 5: "Make it like [famous brand]"
+
+**Solution**:
+- Understand what they like specifically
+- Explain budget differences
+- Create inspired-by version
+- Set realistic expectations
+
+## Integration with Other Skills
+
+Receives input from:
+- **requirements-analyst**: Business needs, target audience, budget
+
+Provides output to:
+- **frontend-builder**: Design specifications for implementation
+- **project-workflow**: Design milestones and deliverables
+
+## Tools & Resources
+
+**Design Tools** (for creating mockups):
+- Figma (free, collaborative)
+- Canva (quick mockups)
+- Adobe XD (professional)
+
+**Color Tools**:
+- Coolors.co (palette generator)
+- Adobe Color (harmony rules)
+- WebAIM Contrast Checker
+
+**Typography**:
+- Google Fonts
+- Font Pair (pairing suggestions)
+
+**Inspiration**:
+- Dribbble
+- Awwwards
+- SiteInspire
+- Local Malaysian websites
+
+**Stock Photos**:
+- Unsplash (free)
+- Pexels (free)
+- Pixabay (free)
+
+## Quality Checklist
+
+Before presenting design proposal:
+
+- [ ] Color palette has good contrast
+- [ ] Typography is readable at all sizes
+- [ ] Layout works on mobile
+- [ ] Matches client's brand (if existing)
+- [ ] Appeals to target audience
+- [ ] Technically feasible within budget
+- [ ] All required pages planned
+- [ ] CTA buttons are prominent
+- [ ] Forms are user-friendly
+- [ ] Footer has all necessary info
+- [ ] Design system is documented
+- [ ] Client can understand the proposal
+- [ ] Timeline is realistic
+- [ ] Revision policy is clear
+
+---
+
+**Remember**: Good design is invisible - it works so well users don't notice it. Focus on usability first, aesthetics second.

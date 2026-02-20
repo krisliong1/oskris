@@ -467,24 +467,26 @@ skill-name/
 | **core-work-rules** | 基础工作原则（自动应用） |
 | **work-rules** | 核心工作规则（自动应用） |
 
-### ⚡ GitHub有但未部署（需手动搜索GitHub触发）
+### ⚡ GitHub存放的Skills（触发词出现时自动去GitHub读取执行）
 
-| 分类 | Skills |
-|------|--------|
-| **OpenClaw** | openclaw-manager, openclaw-agent |
-| **iOS快捷指令** | ios-shortcuts, ios-shortcuts-builder, ios-shortcuts-parser, ios-shortcuts-studio |
-| **iOS配置** | ios-mobileconfig, dns-adblock |
-| **网站设计** | web-design-studio, requirements-analyst, design-enhancement, web-artifacts-builder |
-| **品牌** | oskris-brand-guidelines |
-| **业务** | oskris-invoice-manager, doc-coauthoring, internal-comms |
-| **创意** | algorithmic-art, canvas-design, oskris-gif-creator, theme-factory |
-| **开发** | mcp-builder, skill-creator |
-| **学习** | learning, professional-web-design, claude-code-mastery, prompt-engineering-enhanced |
-| **核心规则** | core-rules（GitHub干净版，无敏感信息） |
-| **Core(存放)** | auto-storage, context-keeper, conversation-starter, conversation-startup, github-ops, memory-updater |
-| **Agents(存放)** | conversation-context-keeper, github-auto-auth, github-change-tracker, github-skills-sync, memory-auto-updater, skill-auto-sync |
-| **文档(内置)** | docx, pdf, pptx, xlsx（claude.ai已内置于/mnt/skills/public/） |
-| **其他** | benepass-reimbursement(参考模板), slack-gif-creator(参考模板), brand-guidelines(Anthropic品牌参考) |
+以下Skills存放在GitHub `krisliong1/oskris/skills/`，当用户提到相关触发词时，Claude自动去GitHub搜索并读取对应SKILL.md来执行，用户不需要手动操作。
+
+| 分类 | Skills | 触发词 |
+|------|--------|--------|
+| **OpenClaw** | openclaw-manager, openclaw-agent | "openclaw"、"open claw"、"配置openclaw"、"openclaw token"、"openclaw重启" |
+| **iOS快捷指令** | ios-shortcuts, ios-shortcuts-builder, ios-shortcuts-parser, ios-shortcuts-studio | "做一个快捷指令"、"创建shortcut"、"自动化XX操作"、"iOS automation"、"分析快捷指令"、"shortcut工具" |
+| **iOS配置** | ios-mobileconfig, dns-adblock | "制作描述文件"、"mobileconfig"、"DNS配置"、"VPN配置"、"屏蔽广告" |
+| **网站设计** | web-design-studio, requirements-analyst, design-enhancement, web-artifacts-builder | "设计网站"、"客户网站"、"需求分析"、"网站改版"、"快速建站" |
+| **品牌** | oskris-brand-guidelines | "品牌规范"、"logo使用"、"brand guidelines" |
+| **业务** | oskris-invoice-manager, doc-coauthoring, internal-comms | "发票"、"invoice"、"写文档"、"内部通讯" |
+| **创意** | algorithmic-art, canvas-design, oskris-gif-creator, theme-factory | "生成艺术"、"做海报"、"创建GIF"、"主题工厂"、"algorithmic art" |
+| **开发** | mcp-builder, skill-creator | "创建MCP"、"做一个skill"、"新建skill"、"MCP server" |
+| **学习** | learning, professional-web-design, claude-code-mastery, prompt-engineering-enhanced | "学习"、"研究"、"了解"、"搞清楚"、"prompt工程" |
+| **核心规则** | core-rules | GitHub干净版，无敏感信息（自动应用） |
+| **Core(存放)** | auto-storage, context-keeper, conversation-starter, conversation-startup, github-ops, memory-updater | 系统级，按需自动调用 |
+| **Agents(存放)** | conversation-context-keeper, github-auto-auth, github-change-tracker, github-skills-sync, memory-auto-updater, skill-auto-sync | 系统级，按需自动调用 |
+| **文档(内置)** | docx, pdf, pptx, xlsx | claude.ai已内置于/mnt/skills/public/，自动触发 |
+| **其他** | benepass-reimbursement, slack-gif-creator, brand-guidelines(Anthropic) | 参考模板，按需查阅 |
 
 ---
 

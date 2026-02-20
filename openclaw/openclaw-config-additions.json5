@@ -1,0 +1,37 @@
+// OpenClaw 配置补丁 (2026-02-20 更新)
+// 在现有 ~/.openclaw/openclaw.json 基础上添加/合并以下内容
+// 不要删除已有配置！只是把这些字段合并进去
+
+{
+  // === Telegram channel（新增）===
+  channels: {
+    // 保留你原来已有的 discord 配置不要删！
+
+    telegram: {
+      botToken: "[见Claude记忆]",
+      dmPolicy: "allowlist",
+      allowFrom: ["[见Claude记忆]"]
+    }
+
+    // Discord 已有配置（参考，不用重复加）:
+    // honorkingsellbot (ID: 1474259579729739949) - 已配置
+    // kaijiepeiwanbot (ID: 1474253373380231372) - 待配置
+    // 服务器: discord.gg/pk9HtCq9
+  },
+
+  // === 工具限制（防止AI乱改文件）===
+  tools: {
+    exec: {
+      approvals: "always"
+    }
+  },
+
+  // === session稳定性设置 ===
+  session: {
+    reset: {
+      mode: "daily",
+      atHour: 4,
+      idleMinutes: 120
+    }
+  }
+}

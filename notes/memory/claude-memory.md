@@ -1,34 +1,35 @@
-# Claude 记忆系统
+# Claude 记忆系统（三环境通用）
 
 最后更新: 2026-02-20
 
-## 核心配置
-1. GitHub: krisliong1/oskris, 只推main分支, /tmp克隆操作
-2. VPS: 76.13.191.45, 见private-config
-3. Hostinger API已配置(见private-config)
-4. 域名: oskris.com(到期2027)
-5. 用户邮箱: oskrismy@gmail.com / krisliong11@gmail.com / official@oskris.com
+## 三个环境
+
+| 环境 | 使用者 | 路径 |
+|------|--------|------|
+| Claude.ai | Claude (web/iOS) | /mnt/user-data/outputs, /tmp |
+| Claude Desktop/Code | Claude (Mac MCP) | /Users/oskris/ |
+| OpenClaw | OpenClaw AI (Mac) | /Users/openclaw/.openclaw/workspace/ |
+
+## 通用规则
+- 修改现有文件前必须告诉用户并等确认
+- 敏感信息只存 private-config（Private仓库）
+- 质量专业级，先验证再执行
+- 工具失败最多重试2次
 
 ## GitHub仓库分工
-6. krisliong1/oskris (Public) — 活跃代码、skills、项目文件
-7. krisliong1/backup (Public) — 存放/备份
-8. krisliong1/private-config (Private) — 所有token、密码、API key
-9. 敏感信息只推private-config, 绝不推public仓库
+- krisliong1/oskris (Public) — 代码、skills、项目
+- krisliong1/backup (Public) — 备份快照
+- krisliong1/private-config (Private) — 所有凭据
 
-## 工作规则
-10. 代码/命令英文, 其他华文; 所有价格用RM
-11. 质量要求专业级; 先验证再执行
-12. 文件已存在用str_replace, 不盲目创建
-13. 文件双版本: Claude版含完整信息, GitHub Public版去敏感信息
+## OpenClaw规则
+- 绝不修改 ~/.openclaw/openclaw.json
+- 绝不执行 openclaw config set
+- 绝不自己重启 gateway
+- 只在 workspace/ 目录内操作
+- 犯错记录到 .learnings/ERRORS.md
 
-## OpenClaw (Mac Mini user:openclaw)
-14. Gateway端口: 18789
-15. Discord已配: honorkingsellbot; 待配: kaijiepeiwanbot
-16. Telegram待配置(见private-config)
-17. 核心问题: gateway断连因AI自改配置
-18. 解决方案: chmod 444+exec approvals+SOUL规则
-19. 配置文件: projects/openclaw-setup/ + private-config仓库
+## 当前待办
+- OpenClaw: 加Telegram + 锁配置（文件在 openclaw/）
+- websitedesign.oskris.com: 待部署
 
-## 当前项目
-20. websitedesign.oskris.com - 待部署
-21. OpenClaw配置修复 - 文件已准备, 等用户回家操作
+完整版见 Claude Project Knowledge

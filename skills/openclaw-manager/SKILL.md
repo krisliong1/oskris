@@ -91,7 +91,7 @@ su - openclaw
 | Access Token | sk-ant-oat01-... | 8小时 | keychain提取/refresh刷新 |
 | Refresh Token | sk-ant-ort01-... | 长期 | 一次性，用后失效 |
 | Setup Token | sk-ant-oat01-... | 长期(最长1年) | `claude setup-token` ✅推荐 |
-| API Key | sk-ant-api03-... | 永久 | console.anthropic.com（按量付费）|
+| API Key | sk-ant-api03-... | 长期(手动revoke前有效) | console.anthropic.com（按量付费）|
 
 **推荐**: 用 `claude setup-token` 生成长期token给OpenClaw。
 

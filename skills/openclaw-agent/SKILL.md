@@ -144,7 +144,7 @@ openclaw onboard  # 选WhatsApp选项，扫码
 | setup-token | oat01 | 长期(最长1年) | ✅ 给OpenClaw用 |
 | access token | oat01 | 8小时 | ❌ 太短 |
 | refresh token | ort01 | 一次性 | ❌ 用完失效 |
-| API key | api03 | 永久 | ⚠️ 按量付费 |
+| API key | api03 | 长期(手动revoke前有效) | ⚠️ 按量付费 |
 
 ## 与其他Skill的关系
 

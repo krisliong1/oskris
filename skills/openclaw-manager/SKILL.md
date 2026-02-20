@@ -223,3 +223,28 @@ WhatsApp / Telegram / Discord
 | 功能 | 基础工具调用 | 完整Agent系统(Skills/Memory/Browser) |
 
 **最后更新**: 2026-02-20
+
+## 配置保护系统（2026-02-20新增）
+
+### 问题
+OpenClaw AI会自行修改 openclaw.json，导致schema验证失败、gateway断连。
+
+### 解决方案
+1. **文件锁定**: `chmod 444 ~/.openclaw/openclaw.json` 让AI物理上改不了
+2. **exec审批**: 配置 `tools.exec.approvals: "always"` 所有命令需用户批准
+3. **SOUL.md规则**: 明确禁止修改配置文件（见 projects/openclaw-setup/soul-protection-rules.md）
+4. **self-improvement skill**: 安装后AI会记录错误，减少重复犯错
+
+### 改配置的正确流程
+```bash
+openclaw gateway stop
+chmod 644 ~/.openclaw/openclaw.json
+nano ~/.openclaw/openclaw.json
+chmod 444 ~/.openclaw/openclaw.json
+openclaw gateway start
+```
+
+### 相关文件
+- 完整操作手册: `projects/openclaw-setup/SETUP-GUIDE.md`
+- SOUL保护规则: `projects/openclaw-setup/soul-protection-rules.md`
+- 配置模板: `projects/openclaw-setup/openclaw-config-additions.json5`

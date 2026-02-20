@@ -133,7 +133,27 @@ curl -s -X POST https://console.anthropic.com/v1/oauth/token \
 
 ## Channel配置
 
-### Telegram
+### Discord ✅ 已配置
+
+已配置Bot: honorkingsellbot (ID: 1474259579729739949)
+详细配置步骤见 `references/discord-setup.md`
+
+```bash
+# 写入配置（替换TOKEN）
+python3 -c "
+import json
+f='/Users/openclaw/.openclaw/openclaw.json'
+c=json.load(open(f))
+c['channels']['discord']={'enabled':True,'botToken':'TOKEN','dmPolicy':'owner','commands':{'native':True,'nativeSkills':True},'actions':{'reactions':True,'sendMessage':True}}
+c.setdefault('plugins',{}).setdefault('entries',{})['discord']={'enabled':True}
+json.dump(c,open(f,'w'),indent=2)
+"
+openclaw gateway restart
+```
+
+Discord开发者页面必须开启: Message Content Intent / Server Members Intent / Presence Intent
+
+### Telegram ✅ 已配置
 
 ```bash
 openclaw config set channels.telegram.accounts.main.token "<BOT_TOKEN>"
@@ -146,6 +166,11 @@ openclaw onboard  # 选WhatsApp，扫码连接
 ```
 
 ## 常见问题
+
+### 配置文件损坏（OpenClaw自我修复导致）
+OpenClaw有时自己修复问题会往配置加无效key，导致gateway起不来。
+修复方法: `openclaw doctor --fix` 或手动用python3删除无效key。
+详见 `references/discord-setup.md`
 
 ### 401 Unauthorized
 - Token过期 → 重新 `claude setup-token` + `paste-token`

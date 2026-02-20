@@ -1,6 +1,6 @@
 # Claude 记忆系统
 
-最后更新: 2026-02-19
+最后更新: 2026-02-20
 
 ## 核心配置
 1. GitHub: krisliong1/oskris, 只推main分支, /tmp克隆操作
@@ -48,6 +48,18 @@
 ## 当前项目
 27. websitedesign.oskris.com - 网站设计服务, 待部署
 28. 定价: 待用户确定新方案
+
+## OpenClaw (Mac Mini user:openclaw)
+33. Gateway: ws://127.0.0.1:18789, 模式local, Dashboard http://127.0.0.1:18789/
+34. Discord已配置: honorkingsellbot(ID:1474259579729739949), kaijiepeiwanbot(ID:1474253373380231372,待配)
+35. 服务器邀请: discord.gg/pk9HtCq9
+36. Telegram已配置: botToken存openclaw.json
+37. 常见故障: 无效config key→python3手动删; gateway.mode未设→openclaw config set gateway.mode local
+38. 认证: claude setup-token → openclaw models auth paste-token --provider anthropic
+
+## 浏览器偏好
+39. DuckDuckGo ✅ 换网络不需重新验证
+40. Opera ❌ 换网络自动退出(不推荐)
 
 ## 文件路径
 29. /home/claude - 临时工作

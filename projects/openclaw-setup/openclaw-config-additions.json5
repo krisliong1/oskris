@@ -1,0 +1,30 @@
+// OpenClaw 配置补丁
+// 在现有 ~/.openclaw/openclaw.json 基础上添加以下内容
+// 不要删除已有配置，只是合并进去
+
+{
+  // Telegram channel
+  channels: {
+    telegram: {
+      botToken: "8056470367:AAGItklM1P08v-U_-NDZKAebe3sloSt1R4M",
+      dmPolicy: "allowlist",
+      allowFrom: ["8552991398"]
+    }
+  },
+
+  // 工具限制 - 所有exec命令必须用户批准
+  tools: {
+    exec: {
+      approvals: "always"
+    }
+  },
+
+  // Session稳定性
+  session: {
+    reset: {
+      mode: "daily",
+      atHour: 4,
+      idleMinutes: 120
+    }
+  }
+}

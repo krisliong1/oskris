@@ -53,9 +53,9 @@ nano ~/.openclaw/openclaw.json
     // 保留你原来已有的channel（比如discord）不要删
     
     telegram: {
-      botToken: "8056470367:AAGItklM1P08v-U_-NDZKAebe3sloSt1R4M",
+      botToken: "[见Claude记忆]",
       dmPolicy: "allowlist",
-      allowFrom: ["8552991398"]
+      allowFrom: ["[见Claude记忆]"]
     }
   },
 
@@ -81,7 +81,7 @@ nano ~/.openclaw/openclaw.json
 - JSON5格式，可以有注释和尾逗号
 - 不要删掉你原来已有的配置（identity、auth、discord等）
 - 只是在原有基础上添加/修改上面这些字段
-- `allowFrom` 里的 `8552991398` 是你的Telegram ID
+- `allowFrom` 里的 `[见Claude记忆]` 是你的Telegram ID
 
 保存退出 nano：`Ctrl+X` → `Y` → `Enter`
 

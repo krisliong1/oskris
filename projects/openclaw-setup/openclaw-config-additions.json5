@@ -8,9 +8,9 @@
     // 保留你原来已有的 discord 配置不要删！
 
     telegram: {
-      botToken: "8056470367:AAGItklM1P08v-U_-NDZKAebe3sloSt1R4M",
+      botToken: "[见Claude记忆]",
       dmPolicy: "allowlist",
-      allowFrom: ["8552991398"]
+      allowFrom: ["[见Claude记忆]"]
     }
 
     // Discord 已有配置（参考，不用重复加）:

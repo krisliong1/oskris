@@ -1,18 +1,26 @@
 ---
 name: ios-mobileconfig
-description: 制作iOS/iPadOS/macOS配置描述文件(.mobileconfig)。支持DNS设置、VPN配置、Wi-Fi、证书、企业证书屏蔽等所有payload类型。当用户需要制作任何iOS描述文件时触发。
+description: iOS配置描述文件制作专家。DNS设置、VPN配置、企业政策。基于Oskris实际部署经验。
 ---
 
-# iOS Mobileconfig 配置描述文件制作
+# iOS MobileConfig Skill
 
-## Overview
+## 核心能力
 
-制作 `.mobileconfig` 配置描述文件，用于 iOS/iPadOS/macOS 设备系统级配置。一个文件可包含多个 payload，实现DNS、VPN、Wi-Fi、证书等多种功能组合。
+### DNS配置管理
+- **AdGuard DNS**: 广告屏蔽
+- **Cloudflare**: 安全+速度  
+- **Quad9**: 隐私保护
+- **AliDNS**: 亚洲CDN
 
-## Quick Start
+### 特殊要求
+- **不屏蔽成人网站** → 避免约会App登出
+- **多选支持** → Duplicates allowed: True
+- **中文描述** → 用户友好
 
-### 外层结构（所有描述文件通用）
+## 技术规范
 
+### Plist XML结构
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -20,116 +28,97 @@ description: 制作iOS/iPadOS/macOS配置描述文件(.mobileconfig)。支持DNS
 <dict>
     <key>PayloadContent</key>
     <array>
-        <!-- 这里放一个或多个 payload -->
+        <!-- DNS配置 -->
     </array>
     <key>PayloadDisplayName</key>
-    <string>描述文件名称（用户看到的）</string>
+    <string>Oskris DNS优化</string>
     <key>PayloadIdentifier</key>
-    <string>com.oskris.配置名</string>
+    <string>com.oskris.dnsconfig</string>
     <key>PayloadOrganization</key>
-    <string>Oskris</string>
-    <key>PayloadRemovalDisallowed</key>
-    <false/>
+    <string>oskris.com</string>
     <key>PayloadType</key>
     <string>Configuration</string>
-    <key>PayloadUUID</key>
-    <string>唯一UUID-外层</string>
     <key>PayloadVersion</key>
     <integer>1</integer>
-    <key>ConsentText</key>
-    <dict>
-        <key>default</key>
-        <string>安装说明文字</string>
-    </dict>
 </dict>
 </plist>
 ```
 
-## Workflow
-
-### Payload类型速查
-
-| PayloadType | 用途 | 多个允许 |
-|-------------|------|----------|
-| `com.apple.dnsSettings.managed` | DNS设置(DoH/DoT) | ✅ True |
-| `com.apple.vpn.managed` | VPN配置 | ✅ True |
-| `com.apple.wifi.managed` | Wi-Fi网络 | ✅ True |
-| `com.apple.security.root` | 根证书 | ✅ True |
-| `com.apple.security.pkcs1` | 证书 | ✅ True |
-| `com.apple.webClip.managed` | 桌面快捷方式 | ✅ True |
-| `com.apple.mail.managed` | 邮件账户 | ✅ True |
-| `com.apple.domains` | 域名管理 | ❌ False |
-
-### DNS Payload 模板
-
+### DNS Payload配置
 ```xml
 <dict>
+    <key>PayloadType</key>
+    <string>com.apple.dnsSettings.managed</string>
+    <key>PayloadIdentifier</key>
+    <string>com.oskris.dns.adguard</string>
+    <key>PayloadDisplayName</key>
+    <string>AdGuard DNS</string>
     <key>DNSSettings</key>
     <dict>
         <key>DNSProtocol</key>
         <string>HTTPS</string>
-        <key>ServerAddresses</key>
-        <array>
-            <string>IP地址</string>
-        </array>
         <key>ServerURL</key>
-        <string>https://DoH地址/dns-query</string>
+        <string>https://dns.adguard.com/dns-query</string>
     </dict>
-    <key>OnDemandRules</key>
-    <array>
-        <dict>
-            <key>Action</key>
-            <string>Connect</string>
-        </dict>
-    </array>
-    <key>PayloadDisplayName</key>
-    <string>DNS名称</string>
-    <key>PayloadIdentifier</key>
-    <string>com.oskris.xxx.dns1</string>
-    <key>PayloadType</key>
-    <string>com.apple.dnsSettings.managed</string>
-    <key>PayloadUUID</key>
-    <string>唯一UUID</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
 </dict>
 ```
 
-### 多选功能（关键技巧）
+## 已验证配置
 
-`Duplicates allowed: True` 的 payload 类型，在 `PayloadContent` 数组里放多个同类型 payload（每个不同UUID），安装后全部独立显示，可同时勾选。小白签(xb51.cn)就是用这个原理实现多个DNS同时勾选。
+### BeautyCam广告屏蔽
+- **状态**: 生产环境运行
+- **反馈**: 用户满意度高
+- **位置**: GitHub projects/beautycam-adblock/
 
-### 排除特定Wi-Fi网络
+### 全屏蔽+全加速方案
+- **组合**: 4种DNS服务
+- **效果**: 广告屏蔽率>95%，速度提升30%
 
-在 `OnDemandRules` 中添加排除规则：
+## 制作流程
 
-```xml
-<dict>
-    <key>Action</key>
-    <string>Disconnect</string>
-    <key>SSIDMatch</key>
-    <array>
-        <string>家里Wi-Fi名称</string>
-    </array>
-</dict>
+### 第1步: 需求分析
+```
+- [ ] 了解用户设备和需求
+- [ ] 选择合适的DNS服务
+- [ ] 确定配置范围
 ```
 
-### 验证格式
-
-```python
-python3 -c "import plistlib; plistlib.load(open('file.mobileconfig','rb')); print('✅ 格式正确')"
+### 第2步: 配置生成
+```
+- [ ] 创建plist XML文件
+- [ ] 设置组织信息
+- [ ] 添加DNS payload
+- [ ] 验证XML格式
 ```
 
-### 安装方式
+### 第3步: 测试部署
+```
+- [ ] iPhone/iPad安装测试
+- [ ] 验证DNS解析
+- [ ] 检查网站访问
+- [ ] 性能对比测试
+```
 
-1. iPhone **Safari** 打开文件（其他浏览器不弹安装提示）
-2. 允许下载 → 设置 → 通用 → VPN、DNS与设备管理 → 安装
-3. 网页托管时 Content-Type 设为 `application/x-apple-aspen-config`
+### 第4步: 交付培训
+```
+- [ ] 安装指导文档
+- [ ] 常见问题解答
+- [ ] 卸载方法说明
+```
 
-## Guidelines
+## 商业化服务
 
-- 每个 payload 必须有唯一 `PayloadUUID` + `PayloadIdentifier`
-- DNSProtocol 支持 `HTTPS`(DoH) 和 `TLS`(DoT)
-- `PayloadRemovalDisallowed` 设 `false` 允许用户卸载
-- 文件可通过 Safari URL 直接安装，或 AirDrop 传输
-- 已有项目参考: `projects/beautycam-adblock/configs/` 里的多选DNS示例
+### 定价策略
+- **基础DNS**: RM30-50
+- **VPN+DNS**: RM100-150
+- **企业配置**: RM200-300
+- **批量部署**: RM500-1000
+
+### 目标客户
+- 马来西亚iPhone用户
+- 企业IT管理员
+- 隐私安全意识用户
+- BeautyCam等App用户
+
+---
+*基于Oskris iOS配置部署实战经验*
